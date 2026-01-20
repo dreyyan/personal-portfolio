@@ -6,25 +6,25 @@ const Home = () => {
 return (
 	<>
         {/* Hero Section */}
-        <div className="flex-col w-auto h-auto mx-[74px] my-[80px] px-[1%] py-[0.5%]">
+        <div className="flex-col w-auto h-auto ">
+            {/* Hero Section Image */}
+            <div className="w-[360px] h-[480px] bg-[var(--color-accent)] shadow-[0_4px_12px_rgba(0,0,0,0.1)] mb-8"></div>
+
+            {/* Hero Section Content */}
             <div className="space-y-4">
-                <div>
-                    <h5 className="font-heading tracking-wide text-[var(--text-primary)]">Hi, I'm</h5>
+                <div className="text-center">
+                    <p className="font-medium text-[24px] text-[var(--text-primary)]">Hi, I'm</p>
                     <h1 className="font-heading text-[var(--text-primary)]">ADRIAN</h1>
                 </div>
-
-                <div className="flex">
-                    <div className="">_______&nbsp;&nbsp;&nbsp;</div>
-                    <h3 className="">FULL-STACK WEB DEVELOPER</h3>
+                <div className="mx-18">
+                    <h6 className="text-center">Full-stack Web Developer & Technopreneur</h6>
                 </div>
             </div>
 
-            <div className="mt-8">
-                <p className="text-semibold text-sm text-[var(--text-secondary)]">
-                    A full-stack web developer and technopreneur focused on building modern, 
-                    scalable software solutions. I enjoy turning real-world problems into 
-                    clean, efficient, and user-friendly applications while continuously 
-                    improving my skills through hands-on projects.
+            <div className="mt-8 mx-10">
+                <p className=" text-[var(--text-secondary)]">
+                I’m a full-stack web developer and technopreneur passionate about building software solutions for real-world problems.
+                I love creating impactful projects and growing my skills through hands-on development.
                 </p>
             </div>
 
