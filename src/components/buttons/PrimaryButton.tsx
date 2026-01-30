@@ -1,8 +1,9 @@
 interface PrimaryButtonProps {
     label: string;
+    onClick?: () => void;
 };
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label, onClick }) => {
     return (
         <button className="
         bg-[var(--color-accent)]
@@ -18,7 +19,9 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label }) => {
         duration-300
         hover:bg-[var(--accent)]/80
         focus:outline-none
-        ">
+        "
+        onClick={onClick}
+        >
             {label}
         </button>
     );

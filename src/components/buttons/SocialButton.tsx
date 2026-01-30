@@ -8,7 +8,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ href, children }) => {
         <a
         href={href} target="_blank" rel="noopener noreferrer"
         className="
-        flex justify-center items-center size-10 rounded-full cursor-pointer
+        flex justify-center items-center size-12 rounded-full cursor-pointer
         border border-[var(--border-color)]
         duration-200 ease-in-out transition transform
 

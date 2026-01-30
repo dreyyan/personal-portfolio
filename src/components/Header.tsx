@@ -5,7 +5,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex justify-between bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 py-4 relative">
+    <header className="flex justify-between bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 py-4 sticky top-0 z-50">
       <div className="hidden sm:block">
         {/* [L]eft: Banner */}
         <div className="flex items-center space-x-3">
@@ -26,7 +26,7 @@ const Header = () => {
           [&>a]:hover:translate-y-[-1px]
         ">
           <Link to="/about-me">ABOUT ME</Link>
-          <Link to="/projects">PORTFOLIO</Link>
+          <Link to="/portfolio">PORTFOLIO</Link>
           <Link to="/resume">RESUME</Link>
         </div>
       </div>
@@ -43,10 +43,13 @@ const Header = () => {
 
       {/* Full-screen Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-[var(--color-surface)]/90 z-50 flex flex-col items-center justify-center gap-8 sm:hidden">
+        <div className="fixed inset-0 bg-[var(--color-surface)]/90 z-50 flex flex-col items-center justify-center gap-8 sm:hidden font-bold">
+          <button onClick={() => setIsMenuOpen(false)} className="fixed top-4 right-6 cursor-pointer">
+            <img src="close-icon.svg" className="size-8"/>
+          </button>
           <Link to="/" onClick={() => setIsMenuOpen(false)}>HOME</Link>
           <Link to="/about-me" onClick={() => setIsMenuOpen(false)}>ABOUT ME</Link>
-          <Link to="/projects" onClick={() => setIsMenuOpen(false)}>PORTFOLIO</Link>
+          <Link to="/portfolio" onClick={() => setIsMenuOpen(false)}>PORTFOLIO</Link>
           <Link to="/resume" onClick={() => setIsMenuOpen(false)}>RESUME</Link>
         </div>
       )}

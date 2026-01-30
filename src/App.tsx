@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import AboutMe from "./AboutMe";
 import Portfolio from "./Portfolio";
-import Projects from "./Projects";
+import Resume from "./Resume";
 
 const App = () => {
     return (
@@ -12,7 +12,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/about-me" element={<AboutMe />} />
                 <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/projects" element={<Projects />} />
+                <Route path="/resume" element={<Resume />} />
             </Route>
         </Routes>
     );
