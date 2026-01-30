@@ -1,6 +1,8 @@
 // [IMPORT] Components
 import PrimaryButton from "./components/buttons/PrimaryButton";
+import SecondaryButton from "./components/buttons/SecondaryButton";
 import SocialButton from "./components/buttons/SocialButton";
+import ShowcaseSection from "./components/ShowcaseSection";
 
 const Home = () => {
 return (
@@ -8,36 +10,36 @@ return (
         {/* Hero Section */}
         <div className="flex-col w-auto h-auto ">
             {/* Hero Section Image */}
-            <div className="w-[360px] h-[480px] bg-[var(--color-accent)] shadow-[0_4px_12px_rgba(0,0,0,0.1)] mb-8"></div>
-
-            {/* Hero Section Content */}
-            <div className="space-y-4">
-                <div className="text-center">
-                    <p className="font-medium text-[24px] text-[var(--text-primary)]">Hi, I'm</p>
-                    <h1 className="font-heading text-[var(--text-primary)]">ADRIAN</h1>
-                </div>
-                <div className="mx-18">
-                    <h6 className="text-center">Full-stack Web Developer & Technopreneur</h6>
+            <div className="flex flex-col items-center relative mb-8">
+                <div className="w-[360px] h-[480px] bg-[var(--color-accent)] shadow-[0_4px_12px_rgba(0,0,0,0.1)]"></div>
+                <div className="flex flex-col items-center w-full py-6 absolute bottom-0 bg-[rgba(0,0,0,0.5)]">
+                    <p className="font-heading font-medium text-[24px] leading-none text-[var(--text-primary)]">Hi, I'm</p>
+                    <p className="font-heading font-bold text-[52px] leading-none text-[var(--text-primary)]">ADRIAN</p>
                 </div>
             </div>
 
-            <div className="mt-8 mx-10">
-                <p className=" text-[var(--text-secondary)]">
+            {/* Hero Section Content */}
+            <div className="mx-18 mb-13">
+                <h6 className=" text-center">Full-stack Web Developer & Technopreneur</h6>
+            </div>
+
+            <div className="mt-8 mb-28 mx-10">
+                <p className="text-[var(--text-secondary)]">
                 I’m a full-stack web developer and technopreneur passionate about building software solutions for real-world problems.
                 I love creating impactful projects and growing my skills through hands-on development.
                 </p>
             </div>
 
             {/* About Me Button & Download CV */}
-            <div className="flex gap-x-6 mt-8 mb-16">
-                <PrimaryButton label="ABOUT ME"/>
-                {/* <SecondaryButton text="Download CV →" fontSize="16px"/> */}
+            <div className="w-full flex flex-col items-center gap-y-4 mt-8 mb-16 px-[96px]">
+                <PrimaryButton label="VIEW MY WORK" />
+                <SecondaryButton text="Contact Me" iconSrc="/contact-icon.svg"/>
             </div>
 
 
-            <div className="">
-                <h6 className="text-[var(--text-primary)]">Follow Me</h6>
-
+            {/* Social Buttons */}
+            <div className="flex flex-col items-center mb-14">
+                <h4 className="text-[var(--text-primary)]">Follow Me</h4>
                 {/* External Link Icons */}
                 <div className="flex gap-x-4 mt-2">
                     <SocialButton href="https://www.linkedin.com/in/dreyyan/">
@@ -56,6 +58,14 @@ return (
                         </svg>
                     </SocialButton>
                 </div>
+            </div>
+
+            {/* Showcase Section */}
+            <div className="flex flex-wrap gap-6 px-10 mb-14">
+                <ShowcaseSection/>
+                <ShowcaseSection/>
+                <ShowcaseSection/>
+                <ShowcaseSection/>
             </div>
         </div>
 	</>

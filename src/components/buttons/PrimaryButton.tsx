@@ -9,11 +9,13 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label }) => {
         text-[var(--text-primary)]
         text-sm
         font-heading
+        font-semibold
         tracking-widest
-        px-4 py-2
+        px-4 py-3
         rounded-md
         cursor-pointer
         transition-colors
+        duration-300
         hover:bg-[var(--accent)]/80
         focus:outline-none
         ">
