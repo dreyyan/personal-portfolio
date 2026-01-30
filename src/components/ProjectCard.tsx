@@ -36,7 +36,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ imgSrc, title, description, p
                     href={codeLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex justify-center items-center text-center text-sm font-bold text-[var(--color-accent)] py-1 rounded-br-xl border border-[var(--color-accent)]"
+                    className="flex-1 flex justify-center items-center text-center text-sm font-bold text-[var(--color-accent)] py-1 rounded-br-xl border border-[var(--color-accent)]
+                    transition-colors
+                    duration-300
+                    hover:border-t-[var(--text-primary)]/80
+                    hover:border-b-[var(--text-primary)]/80
+                    hover:border-r-[var(--text-primary)]/80
+                    hover:text-[var(--text-primary)]/80
+                    focus:outline-none
+                    "
                 >
                     View Code →
                 </a>
