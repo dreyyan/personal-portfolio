@@ -15,19 +15,19 @@ const Home = () => {
             {/* Hero Section */}
             <div className="flex-col w-auto h-auto ">
                 {/* Hero Section Image */}
-                <div className="flex flex-col items-center relative mb-8">
+                <div className="flex flex-col items-center relative mb-4">
                 <div className="relative w-[360px] h-[480px] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
                 {/* Skeleton */}
                 {!loaded && (
-                    <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)] rounded" />
+                    <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
                 )}
 
-                {/* Real Image */}
+                {/* Image */}
                 <img
                     src="/hero-section-image.jpg"
                     alt="Project preview"
                     onLoad={() => setLoaded(true)}
-                    className={`w-full h-full object-cover rounded transition-opacity duration-300 ${
+                    className={`w-full h-full object-cover transition-opacity duration-300 ${
                     loaded ? "opacity-100" : "opacity-0"
                     }`}
                 />
@@ -38,23 +38,29 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="space-y-10">
+                <div className="space-y-10 mx-12">
                     {/* Hero Section Content */}
-                    <div className="mx-12">
+                    <div className="">
                         <h5 className=" text-center">Full-stack Web Developer & Technopreneur</h5>
                     </div>
 
-                    <div className="mt-8 mx-10">
-                        <p className="text-[var(--text-secondary)]">
+                    <div>
+                        <p className="body-small text-center text-[var(--text-secondary)]">
                         I’m a full-stack web developer and technopreneur passionate about building software solutions for real-world problems.
                         I love creating impactful projects and growing my skills through hands-on development.
                         </p>
                     </div>
 
-                    {/* About Me Button & Download CV */}
-                    <div className="w-full flex flex-col items-center gap-y-4 px-[96px]">
+                    {/* [BUTTON] View My Work, Contact Me, Download CV */}
+                    <div className="w-full flex flex-col items-center gap-y-4">
                         <PrimaryButton label="VIEW MY WORK" onClick={() => navigate("/projects")}  />
                         <SecondaryButton text="Contact Me" iconSrc="/contact-icon.svg"/>
+                        <a href="resume_web_development.pdf" download
+                        className="relative text-[var(--text-secondary)] font-medium
+                        after:content-[''] after:absolute after:bottom-0 after:h-[1px] 
+                        after:bg-[var(--text-primary)] after:left-1/2 after:-translate-x-1/2 
+                        after:w-0 hover:after:w-full after:transition-all after:duration-300"
+                        >Download CV →</a>
                     </div>
 
                     {/* Social Buttons */}
@@ -82,7 +88,7 @@ const Home = () => {
                     </div>
 
                     {/* Showcase Section */}
-                    <div className="flex flex-wrap gap-6 px-10 mb-14">
+                    <div className="flex flex-wrap gap-6 mb-14">
                         <ShowcaseSection/>
                         <ShowcaseSection/>
                         <ShowcaseSection/>

@@ -43,7 +43,7 @@ const Header = () => {
 
       {/* Full-screen Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-[var(--color-surface)]/90 z-50 flex flex-col items-center justify-center gap-8 sm:hidden font-bold">
+        <div className="fixed inset-0 bg-[var(--color-surface)]/96 z-50 flex flex-col items-center justify-center gap-8 sm:hidden font-bold">
           <button onClick={() => setIsMenuOpen(false)} className="fixed top-4 right-6 cursor-pointer">
             <img src="close-icon.svg" className="size-8"/>
           </button>
