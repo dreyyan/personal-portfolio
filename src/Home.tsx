@@ -13,25 +13,30 @@ const Home = () => {
     return (
         <>
             {/* Hero Section */}
-            <div className="flex-col w-auto h-auto ">
+            <div className="flex-col w-auto h-auto sm:p-20">
                 {/* Hero Section Image */}
-                <div className="flex flex-col items-center relative mb-4">
-                <div className="relative w-[360px] h-[480px] shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-                {/* Skeleton */}
-                {!loaded && (
-                    <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
-                )}
+                <div className="flex flex-col items-center relative mb-6">
+                    <div className="
+                    relative
+                    w-full
+                    aspect-[3/4]
+                    shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+                    >
+                        {/* Skeleton */}
+                        {!loaded && (
+                            <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
+                        )}
 
-                {/* Image */}
-                <img
-                    src="/hero-section-image.jpg"
-                    alt="Project preview"
-                    onLoad={() => setLoaded(true)}
-                    className={`w-full h-full object-cover transition-opacity duration-300 ${
-                    loaded ? "opacity-100" : "opacity-0"
-                    }`}
-                />
-                </div>
+                        {/* Image */}
+                        <img
+                            src="/hero-section-image.jpg"
+                            alt="Project preview"
+                            onLoad={() => setLoaded(true)}
+                            className={`w-full h-full object-cover transition-opacity duration-300 ${
+                            loaded ? "opacity-100" : "opacity-0"
+                            }`}
+                        />
+                    </div>
                     <div className="flex flex-col items-center w-full py-4 absolute bottom-0 bg-[rgba(0,0,0,0.3)]">
                         <p className="font-heading font-bold text-[24px] leading-none text-[var(--text-primary)]">Hi, I'm</p>
                         <p className="font-heading font-bold text-[64px] leading-none text-[var(--text-primary)]">ADRIAN</p>
@@ -41,11 +46,11 @@ const Home = () => {
                 <div className="space-y-10 mx-12">
                     {/* Hero Section Content */}
                     <div className="">
-                        <h5 className=" text-center">Full-stack Web Developer & Technopreneur</h5>
+                        <h3 className=" text-center">Full-stack Web Developer & Technopreneur</h3>
                     </div>
 
                     <div>
-                        <p className="body-small text-center text-[var(--text-secondary)]">
+                        <p className="body-regular text-center text-[var(--text-secondary)]">
                         I’m a full-stack web developer and technopreneur passionate about building software solutions for real-world problems.
                         I love creating impactful projects and growing my skills through hands-on development.
                         </p>
@@ -65,7 +70,7 @@ const Home = () => {
 
                     {/* Social Buttons */}
                     <div className="flex flex-col items-center mt-24">
-                        <h4 className="text-[var(--text-primary)]">Follow Me</h4>
+                        <h3 className="text-[var(--text-primary)]">Follow Me</h3>
 
                         {/* External Link Icons */}
                         <div className="flex gap-x-4 mt-4">

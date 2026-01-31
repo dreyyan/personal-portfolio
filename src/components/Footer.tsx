@@ -24,12 +24,14 @@ const Footer = () => {
             </div>
 
             {/* Copyright */}
-            <p className="poppins text-sm font-medium text-[var(--text-primary)] mt-2 opacity-80">
-                © 2024–{new Date().getFullYear()} Adrian Tan. All rights reserved.
-            </p>
+            <div className="mt-4">
+                <p className="poppins text-sm font-medium text-[var(--text-primary)] mt-2 opacity-80">
+                    © 2024–{new Date().getFullYear()} Adrian Tan. All rights reserved.
+                </p>
 
-            <p className="text-xs mt-1 opacity-80">• FULL-STACK WEB DEVELOPER •</p>
-            <p className="text-xs mt-1 opacity-80">• TECHNOPRENEUR •</p>
+                <p className="text-xs mt-1 opacity-80">• FULL-STACK WEB DEVELOPER •</p>
+                <p className="text-xs mt-1 opacity-80">• TECHNOPRENEUR •</p>
+            </div>
         </footer>
     );
 };

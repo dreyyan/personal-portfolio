@@ -27,13 +27,13 @@ const FooterSection: React.FC<FooterSectionProps> = ({
   };
 
 const descriptionClasses =
-  "footer-caption text-center" + (onClick ? " cursor-pointer hover:underline" : "");
+  "footer-caption text-center text-[var(--text-secondary)]" + (onClick ? " cursor-pointer hover:underline" : "");
 
 
   return (
     <div className="flex flex-col items-center">
       <img src={iconSrc} alt={title} className="size-7" />
-      <p className="footer-title text-center">{title}</p>
+      <p className="footer-title text-center font-semibold">{title}</p>
 
       <p className={descriptionClasses} onClick={onClick}>
         {renderDescription()}

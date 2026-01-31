@@ -5,13 +5,21 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex justify-between bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 py-4 sticky top-0 z-50">
-      <div className="hidden sm:block">
+    <header className="flex justify-between bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 py-2 sticky top-0 z-50">
+      <div className="hidden sm:flex w-full items-center justify-between">
         {/* [L]eft: Banner */}
-        <div className="flex items-center space-x-3">
-          <img src="code-icon.svg" alt="Code Icon" className="size-6" />
-          <p className="font-heading font-400 tracking-widest text-[var(--text-primary)]">DREYYAN</p>
-        </div>
+        <a href="/" className="flex items-center">
+          <div className="flex items-center space-x-3 cursor-pointer">
+            <img src="code-icon.svg" alt="Code Icon" className="size-6" />
+            <p className="
+            font-heading font-bold tracking-widest text-[var(--text-primary)]
+            transition-all duration-300 ease-out
+            hover:-translate-y-0.5 hover:opacity-80
+          ">
+            DREYYAN
+          </p>
+          </div>
+        </a>
 
         <div className="
           flex justify-end items-center gap-8
