@@ -5,7 +5,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex justify-between bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 py-2 sticky top-0 z-50">
+    <header className="flex bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 py-2 sticky top-0 z-50">
       <div className="hidden sm:flex w-full items-center justify-between">
         {/* [L]eft: Banner */}
         <a href="/" className="flex items-center">
@@ -40,7 +40,7 @@ const Header = () => {
       </div>
 
       {/* Burger Menu Icon */}
-      <div className="ml-auto sm:hidden">
+      <div className="ml-auto sm:hidden flex">
         <button
           className="cursor-pointer"
           onClick={() => setIsMenuOpen(!isMenuOpen)}

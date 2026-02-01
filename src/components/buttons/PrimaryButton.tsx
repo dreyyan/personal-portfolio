@@ -6,6 +6,7 @@ interface PrimaryButtonProps {
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({ label, onClick }) => {
     return (
         <button className="
+        md:w-full
         bg-[var(--color-accent)]
         text-[var(--text-primary)]
         text-sm

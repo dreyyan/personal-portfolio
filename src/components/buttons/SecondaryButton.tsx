@@ -10,6 +10,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({ text, iconSrc }) => {
         group
         flex items-center justify-center
         w-auto
+        md:w-full
         px-4 py-2
         text-[var(--color-accent)] hover:text-[var(--text-secondary)]
         rounded-lg border border-[var(--border-color)] hover:border-[var(--text-secondary)]
