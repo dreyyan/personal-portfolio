@@ -55,7 +55,7 @@
   --secondary-background: #2A2A3F;
   --card: #252536;
 
-  --accent: #2AA198;
+  --accent: hsl(175, 59%, 40%);
   --error: #FF5555;
 
   --text-primary: #E6E6FA;
