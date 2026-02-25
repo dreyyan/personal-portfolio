@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import PrimaryButton from "./components/buttons/PrimaryButton";
 import SecondaryButton from "./components/buttons/SecondaryButton";
 import SocialButton from "./components/buttons/SocialButton";
-import ShowcaseSection from "./components/ShowcaseSection";
 
 const Home = () => {
   const navigate = useNavigate();
