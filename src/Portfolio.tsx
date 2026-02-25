@@ -25,8 +25,8 @@ const Portfolio = () => {
           </p>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-            <ProjectCard
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8 justify-items-center">
+            <ProjectCard xl:grid-cols-4
               imgSrc="card-symptomatik-ai.png"
               title="SymptoMatik-AI"
               subtitle="An AI-Powered Symptom Ranking and Diagnostic Assistant for Healthcare Professionals"
@@ -107,7 +107,7 @@ const Portfolio = () => {
             </div>
 
           {/* Filtered Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
             {filteredProjects.map((project, index) => (
                 <OtherProjectCard
                 key={index}
