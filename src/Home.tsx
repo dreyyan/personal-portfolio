@@ -13,14 +13,14 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 py-6 sm:px-12 lg:px-20 sm:py-20 xl:px-0">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
+      <section className="max-w-7xl mx-auto px-6 py-6 sm:px-12 sm:py-20 lg:px-12 lg:py-18 xl:pl-20 xl:pr-0 xl:py-24">
+        <div className="flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
 
           {/* Text Content */}
-          <div className="space-y-8 md:space-y-4 text-center lg:text-left order-2 lg:order-1 mt-8 lg:mt-0">
+          <div className="space-y-8 md:space-y-4 text-center lg:text-left order-2 lg:order-1 mt-8 lg:mt-0 px-2 sm:px-12 md:px-0">
             {/* Big Screens - Hero Header & Section in Left */}
             <div className="w-full hidden md:block">
-              <p className="font-heading font-bold text-xl md:text-3xl text-[var(--text-primary)]">
+              <p className="font-heading font-bold text-xl text-[var(--text-primary)]/80 md:text-md">
                 Hi, I'm
               </p>
               <p className="font-heading font-bold text-5xl md:text-7xl text-[var(--text-primary)]">
@@ -29,12 +29,12 @@ const Home = () => {
             </div>
 
             <div className="mb-12">
-                <h3 className="text-lg text-[var(--text-primary)]">
+                <h3 className="text-[var(--text-primary)] md:text-[var(--text-primary)]">
                 Full-stack Web Developer & Technopreneur
                 </h3>
             </div>
 
-            <p className="body-regular text-[var(--text-secondary)] max-w-xl mx-auto lg:mx-0 mb-14">
+            <p className="text-md sm:text-lg tracking-wide sm:body- text-[var(--text-secondary)]/90 max-w-xl mx-auto lg:mx-0 mb-14">
               I’m a full-stack web developer and technopreneur passionate about building software solutions for real-world problems.
               I love creating impactful projects and growing my skills through hands-on development.
             </p>
@@ -59,33 +59,33 @@ const Home = () => {
             </div>
           </div>
 
-            {/* Hero Image */}
-            <div className="relative w-full max-w-md mx-auto lg:mx-auto order-1 lg:order-2 flex justify-center lg:justify-center">
-                <div className="relative aspect-square md:aspect-[3/4] md:h-full shadow-[0_4px_12px_rgba(0,0,0,0.2)] w-full max-w-md">
-                    {!loaded && (
-                    <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
-                    )}
+          {/* Hero Image */}
+          <div className="relative w-full max-w-md order-1 lg:order-2 flex justify-center lg:justify-end">
+              <div className="relative aspect-square md:aspect-[3/4] md:h-full shadow-[0_4px_12px_rgba(0,0,0,0.2)] w-full max-w-md">
+                  {!loaded && (
+                  <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
+                  )}
 
-                    <img
-                    src="/hero-section-profile.png"
-                    alt="Project preview"
-                    onLoad={() => setLoaded(true)}
-                    className={`w-full h-full object-cover transition-opacity duration-300 ${
-                        loaded ? "opacity-100" : "opacity-0"
-                    }`}
-                    />
-                </div>
+                  <img
+                  src="/hero-section-profile.png"
+                  alt="Project preview"
+                  onLoad={() => setLoaded(true)}
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${
+                      loaded ? "opacity-100" : "opacity-0"
+                  }`}
+                  />
+              </div>
 
-                {/* Name Overlay */}
-                <div className="absolute bottom-0 w-full py-4 bg-[rgba(0,0,0,0.7)] text-center md:hidden">
-                    <p className="font-heading font-bold text-xl text-[var(--text-primary)]">
-                    Hi, I'm
-                    </p>
-                    <p className="font-heading font-bold text-5xl text-[var(--text-primary)]">
-                    ADRIAN
-                    </p>
-                </div>
-            </div>
+              {/* Name Overlay */}
+              <div className="absolute bottom-0 w-full py-4 bg-[rgba(0,0,0,0.7)] text-center md:hidden">
+                  <p className="font-heading font-bold text-xl text-[var(--text-primary)]">
+                  Hi, I'm
+                  </p>
+                  <p className="font-heading font-bold text-5xl text-[var(--text-primary)]">
+                  ADRIAN
+                  </p>
+              </div>
+          </div>
         </div>
       </section>
 

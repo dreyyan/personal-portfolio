@@ -11,7 +11,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ imgSrc, title, subtitle, desc
   const isPreviewDisabled = !previewLink;
 
   return (
-    <div className="rounded-xl shadow-lg overflow-hidden bg-[var(--secondary-background)] flex flex-col w-full max-w-sm">
+    <div className="rounded-xl shadow-lg overflow-hidden bg-[var(--card)] flex flex-col w-full max-w-sm">
       {/* Responsive 4:3 image */}
       <div className="w-full aspect-[4/3] overflow-hidden rounded-t-[14px]">
         <img
@@ -21,8 +21,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ imgSrc, title, subtitle, desc
         />
       </div>
 
-      <div className="bg-[var(--card)] rounded-b-[14px]">
-        <div className="px-4 py-4 flex flex-col gap-3">
+      <div className="bg-[var(--card)] rounded-b-[14px] flex flex-col flex-grow">
+        <div className="px-4 py-4 flex flex-col gap-3 flex-grow">
           <h3 className="font-heading font-bold text-xl">{title}</h3>
 
           {/* Subtitle */}

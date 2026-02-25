@@ -15,7 +15,7 @@ const OtherProjectCard: React.FC<OtherProjectCardProps> = ({
 
   return (
     <div className="rounded-xl shadow-lg overflow-hidden bg-[var(--secondary-background)] flex flex-col w-full max-w-sm">
-      <div className="bg-[var(--card)] rounded-b-[14px]">
+      <div className="bg-[var(--card)] rounded-b-[14px] h-full">
         <div className="px-4 py-4 flex flex-col gap-3">
           <h3 className="font-heading font-bold text-xl">{title}</h3>
 

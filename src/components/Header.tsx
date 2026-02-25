@@ -5,7 +5,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 py-2 sticky top-0 z-50">
+    <header className="flex bg-[var(--color-surface)] h-[clamp(60px,8vw,96px)] px-6 md:px-8 lg:px-12 py-2 sticky top-0 z-50">
       <div className="hidden sm:flex w-full items-center justify-between">
         {/* [L]eft: Banner */}
         <a href="/" className="flex items-center">
@@ -28,6 +28,8 @@ const Header = () => {
           [&>a]:font-semibold
           [&>a]:tracking-wider
           [&>a]:text-xs
+          [&>a]:md:text-sm
+          [&>a]:lg:text-md
           [&>a]:transition
           [&>a]:duration-300
           [&>a]:ease-in-out
