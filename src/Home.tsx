@@ -66,7 +66,7 @@ const Home = () => {
                   )}
 
                   <img
-                  src="/hero-section-profile.png"
+                  src="/profile-picture.png"
                   alt="Project preview"
                   onLoad={() => setLoaded(true)}
                   className={`w-full h-full object-cover transition-opacity duration-300 ${

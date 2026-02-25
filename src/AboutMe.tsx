@@ -4,21 +4,21 @@ const aboutSections = [
   {
     key: "why",
     title: "WHY I CODE",
-    img: "/why-i-code.jpg",
+    img: "/why-i-code.png",
     alt: "Why I Code",
     description: `Hi, I’m Adrian — a full-stack web developer and technopreneur from the Philippines. I’ve always been fascinated by how technology can turn ideas into real solutions, and that curiosity has driven me to build software that makes life easier, more efficient, and more fun.`,
   },
   {
     key: "spec",
     title: "SPECIALIZATION",
-    img: "/specialization.jpg",
+    img: "/specialization.webp",
     alt: "Specialization",
     description: `I specialize in React, TypeScript, and Python, creating web apps that are scalable, responsive, and user-friendly. From concept to deployment, I enjoy solving problems with clean, maintainable code and seeing my projects come to life.`,
   },
   {
     key: "values",
     title: "VALUES & MINDSET",
-    img: "/values.jpg",
+    img: "/values-and-mindset.webp",
     alt: "Values and Mindset",
     description: `Beyond coding, I value continuous learning, creativity, and impact. I approach every project with a growth mindset, embracing challenges as opportunities to improve and deliver meaningful results. I love collaborating with others, sharing knowledge, and finding innovative ways to bridge technology and everyday needs.`,
   },
@@ -33,17 +33,17 @@ const Home = () => {
 
             {/* [IMAGE] About Me */}
             <div className="relative w-full aspect-[3/4] mb-12 max-w-80 mx-auto">
-            {!aboutLoaded && (
-                <div className="absolute inset-0 animate-pulse bg-[var(--accent)] rounded" />
-            )}
+                  {!loaded && (
+                  <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
+                  )}
 
-            <img
-                src="/about-me-image.jpg"
-                alt="About Me - Picture"
-                onLoad={() => setAboutLoaded(true)}
-                className={`w-full h-full object-cover transition-opacity duration-300 ${
-                aboutLoaded ? "opacity-100" : "opacity-0"
-                }`}
+                <img
+                    src="/profile-picture.png"
+                    alt="About Me - Picture"
+                    onLoad={() => setAboutLoaded(true)}
+                    className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    aboutLoaded ? "opacity-100" : "opacity-0"
+                    }`}
             />
             </div>
 
