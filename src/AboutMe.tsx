@@ -26,7 +26,7 @@ const aboutSections = [
 
 const Home = () => {
     const [aboutLoaded, setAboutLoaded] = useState(false);
-    const [loaded, setLoaded] = useState({});
+    const [loaded, setLoaded] = useState<Record<string, boolean>>({});
 
     return (
         <div className="flex-col w-auto h-auto py-16 px-10">
