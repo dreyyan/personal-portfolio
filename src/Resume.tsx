@@ -1,156 +1,26 @@
 import ExperienceCard from "./components/ExperienceCard";
-import SocialLink from "./components/SocialLink";
+import { SocialIcon } from "./Home";
 
+const courses = ["Web Development", "Human-Computer Interaction", "Software Engineering", "Systems Analysis & Design"];
 const skills = [
-  {
-    category: "FRONTEND",
-    items: [
-      "React",
-      "React Native",
-      "JavaScript/TypeScript",
-      "HTML5/CSS3",
-    ],
-  },
-  {
-    category: "BACKEND",
-    items: [
-      "Node.js",
-      "Express.js",
-      "Flask",
-      "MySQL",
-      "PostgreSQL",
-      "MongoDB",
-      "SQLite",
-      "SQLAlchemy",
-    ],
-  },
-  {
-    category: "TOOLS & PLATFORMS",
-    items: [
-      "Git/GitHub",
-      "VSCode",
-      "Vercel",
-      "Netlify",
-      "Postman",
-      "Figma",
-      "Canva",
-    ],
-  },
+  { category: "Frontend", items: ["React", "React Native", "TypeScript", "JavaScript", "HTML5", "CSS3"] },
+  { category: "Backend & Data", items: ["Node.js", "Express.js", "Flask", "PostgreSQL", "MySQL", "MongoDB", "SQLite", "SQLAlchemy"] },
+  { category: "Tools & Platforms", items: ["Git & GitHub", "Vercel", "Netlify", "Postman", "Figma", "VS Code"] },
 ];
-
-const Resume = () => {
-    return (
-        <div className="flex flex-col w-auto h-auto py-16 px-10">
-            <p className="font-heading font-black text-5xl text-center mb-12">RESUME</p>
-
-            <div className="flex flex-col gap-12 px-0 sm:px-8 md:px-16">
-                {/* Header */}
-                <div>
-                    {/* About Me - Role & Education */}
-                    <div className="mb-20 space-y-4">
-                        <p className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl tracking-widest">ADRIAN TAN</p>
-
-                        <div className="sm:flex gap-x-2 [&>p]:font-heading [&>p]:font-bold [&>p]:text-lg [&>p]:sm:text-xl [&>p]:md:text-2xl">
-                        <p>WEB DEVELOPER</p>
-                        <p className="hidden sm:block">◦</p>
-                        <p>TECHNOPRENEUR</p>
-                        </div>
-
-                        <div className="space-y-1">
-                            <p className="font-heading font-bold text-sm sm:text-md md:text-lg">BS COMPUTER SCIENCE</p>
-                            <p className="font-heading italic text-sm sm:text-md md:text-lg">WEST VISAYAS STATE UNIVERSITY (2028)</p>
-                        </div>
-
-                        {/* Social Links */}
-                        <div className="flex flex-col items-start gap-3 my-12">
-                            <SocialLink text="adriandominic.tan@wvsu.edu.ph" url="mailto:adriandominic.tan@wvsu.edu.ph" iconSrc="resume-email-icon.svg" />
-                            <SocialLink text="github.com/dreyyan" url="https://github.com/dreyyan" iconSrc="resume-github-icon.svg" />
-                            <SocialLink text="linkedin.com/dreyyan" url="https://linkedin.com/in/dreyyan" iconSrc="resume-linkedin-icon.svg" />
-                            <SocialLink text="facebook.com/dreyyan0729" url="https://facebook.com/dreyyan0729" iconSrc="resume-facebook-icon.svg" />
-                        </div>
-                    </div>
-                </div>
-
-                <h2 className="text-2xl font-bold text-center">EXPERIENCE</h2>
-                {/* Experience Section */}
-                <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-x-12">
-                    <ExperienceCard
-                        title="Freelance Web Developer"
-                        iconUrl="/freelance-web-developer-icon.svg"
-                        category="Self-Employed"
-                        yearRange="2022 - Present"
-                        description={[
-                        "Developed and maintained websites for small businesses and personal projects using HTML, CSS, JavaScript, and React.",
-                        "Collaborated with clients to gather requirements, provide updates, and ensure satisfaction with the final product.",
-                        "Implemented responsive design principles to ensure optimal user experience across various devices."
-                        ]}
-                    />
-
-                    <ExperienceCard
-                    title="Data Scientist"
-                    iconUrl="/data-scientist-icon.svg"
-                    category="AI / Analytics Team"
-                    yearRange="2023 - Present"
-                    description={[
-                        "Built and evaluated machine learning models for prediction and classification tasks using Python and scikit-learn.",
-                        "Performed data cleaning, feature engineering, and exploratory data analysis on structured datasets.",
-                        "Created visualizations and reports to communicate model insights and performance metrics."
-                    ]}
-                    />
-                </div>
-
-                {/* Education Section */}
-                <div className="flex flex-col">
-                    <h2 className="text-2xl font-bold text-center">EDUCATION</h2>
-                    <div className="space-y-2 mt-3 mb-8">
-                        <p className="font-heading font-medium text-sm tracking-[6px] text-center">BS COMPUTER SCIENCE</p>
-                        <p className="font-heading italic font-regular text-xs tracking-[2px] text-center">
-                        WEST VISAYAS STATE UNIVERSITY (2028)
-                        </p>
-                    </div>
-
-                    <h4>RELEVANT COURSES</h4>
-                    <ul className="list-disc list-inside space-y-1 mt-2">
-                    <li>Web Development</li>
-                    <li>Human-Computer Interaction</li>
-                    <li>Software Engineering</li>
-                    <li>Systems Analysis & Design</li>
-                    </ul>
-                </div>
-
-                <div className="flex flex-col space-y-12">
-                <h2 className="text-2xl font-bold text-center">SKILLS</h2>
-
-                {skills.map((skillGroup) => (
-                    <div
-                    key={skillGroup.category}
-                    className="flex flex-col space-y-2"
-                    >
-                    <h4 className="font-semibold">
-                        {skillGroup.category}
-                    </h4>
-
-                    <ul className="list-disc list-inside space-y-1 mt-2">
-                        {skillGroup.items.map((skill) => (
-                        <li key={skill}>{skill}</li>
-                        ))}
-                    </ul>
-                    </div>
-                ))}
-                </div>
-
-                {/* Download CV */}
-                <div className="flex justify-center items-center">
-                    <a href="resume_web_development.pdf" download
-                    className="relative text-[var(--text-secondary)] font-medium
-                    after:content-[''] after:absolute after:bottom-0 after:h-[1px] 
-                    after:bg-[var(--text-primary)] after:left-1/2 after:-translate-x-1/2 
-                    after:w-0 hover:after:w-full after:transition-all after:duration-300"
-                    >Download CV →</a>
-                </div>
-            </div>
-        </div>
-    );
+const contactClass = "flex items-center gap-3 text-sm text-[var(--text-secondary)] transition hover:translate-x-1 hover:text-[var(--accent)]";
+const skillColors: Record<string, string> = {
+  React: "border-[#61DAFB]/35 bg-[#61DAFB]/10 text-[#61DAFB]", "React Native": "border-[#61DAFB]/35 bg-[#61DAFB]/10 text-[#61DAFB]", TypeScript: "border-[#3178C6]/45 bg-[#3178C6]/15 text-[#70B7F0]", JavaScript: "border-[#F7DF1E]/35 bg-[#F7DF1E]/10 text-[#F7DF1E]", HTML5: "border-[#E34F26]/40 bg-[#E34F26]/10 text-[#FF7957]", CSS3: "border-[#1572B6]/40 bg-[#1572B6]/10 text-[#62B7E9]", "Node.js": "border-[#5FA04E]/40 bg-[#5FA04E]/10 text-[#86CB74]", "Express.js": "border-slate-400/35 bg-slate-400/10 text-slate-300", Flask: "border-zinc-400/35 bg-zinc-400/10 text-zinc-200", PostgreSQL: "border-[#4169E1]/40 bg-[#4169E1]/10 text-[#7FA0FF]", MySQL: "border-[#4479A1]/40 bg-[#4479A1]/10 text-[#78ACD2]", MongoDB: "border-[#47A248]/40 bg-[#47A248]/10 text-[#75D476]", SQLite: "border-[#44A2D1]/40 bg-[#44A2D1]/10 text-[#7BC4E8]", SQLAlchemy: "border-red-400/40 bg-red-400/10 text-red-300", "Git & GitHub": "border-orange-400/40 bg-orange-400/10 text-orange-300", Vercel: "border-white/30 bg-white/10 text-white", Netlify: "border-[#00C7B7]/40 bg-[#00C7B7]/10 text-[#48E0D4]", Postman: "border-[#FF6C37]/40 bg-[#FF6C37]/10 text-[#FF8F66]", Figma: "border-fuchsia-400/40 bg-fuchsia-400/10 text-fuchsia-300", "VS Code": "border-[#007ACC]/40 bg-[#007ACC]/10 text-[#55B9F3]",
 };
 
+const Resume = () => <main className="page-shell">
+  <section className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end"><div><p className="eyebrow">Resume</p><h1 className="mt-4 text-5xl font-[750] tracking-[-.055em] sm:text-6xl">Adrian Tan</h1><p className="mt-4 text-xl font-semibold text-[var(--accent)]">Full-stack developer & technopreneur</p><p className="mt-5 max-w-2xl leading-7 text-[var(--text-secondary)]">Computer Science student building responsive web products and data-informed tools, from initial requirements to working software.</p></div><div className="space-y-3"><a className={contactClass} href="mailto:adriandominic.tan@wvsu.edu.ph"><SocialIcon name="email" />adriandominic.tan@wvsu.edu.ph</a><a className={contactClass} href="https://github.com/dreyyan" target="_blank" rel="noreferrer"><SocialIcon name="github" />github.com/dreyyan</a><a className={contactClass} href="https://linkedin.com/in/dreyyan" target="_blank" rel="noreferrer"><SocialIcon name="linkedin" />linkedin.com/in/dreyyan</a></div></section>
+
+  <section className="section-block"><div className="section-heading"><div><p className="eyebrow">Experience</p><h2 className="mt-3 section-title">Work and practice.</h2></div><span className="hidden text-sm text-[var(--text-secondary)] sm:block">2022 - Present</span></div><div className="grid gap-6 md:grid-cols-2"><ExperienceCard title="Freelance Web Developer" iconUrl="/freelance-web-developer-icon.svg" category="Self-employed" yearRange="2022 - Present" description={["Develop and maintain responsive websites for small businesses and independent projects.", "Translate client requirements into clear features and refine work from feedback.", "Build accessible interfaces that work reliably across common screen sizes."]} /><ExperienceCard title="Data Scientist" iconUrl="/data-scientist-icon.svg" category="AI / Analytics" yearRange="2023 - Present" description={["Build and evaluate machine-learning models for prediction and classification.", "Clean data, engineer features, and explore structured datasets using Python.", "Create visual reports that make model insights understandable."]} /></div></section>
+
+  <section className="section-block grid gap-10 border-y border-white/10 py-12 lg:grid-cols-[.72fr_1.28fr]"><div><p className="eyebrow">Education</p><h2 className="mt-3 text-2xl font-bold">BS Computer Science</h2><p className="mt-3 text-[var(--text-secondary)]">West Visayas State University</p><p className="mt-1 text-sm font-semibold text-[var(--accent)]">Class of 2028</p></div><div><p className="mb-5 text-xs font-semibold uppercase tracking-[.15em] text-[var(--text-secondary)]">Relevant coursework</p><div className="grid gap-3 sm:grid-cols-2">{courses.map((course, index) => <div key={course} className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[.025] p-4"><span className="text-xs font-bold text-[var(--accent)]">0{index + 1}</span><span className="text-sm font-semibold">{course}</span></div>)}</div></div></section>
+
+  <section className="section-block"><p className="eyebrow">Capabilities</p><h2 className="mt-3 section-title">Skills, organized.</h2><div className="mt-8 grid gap-6 lg:grid-cols-3">{skills.map((group, index) => <article key={group.category} className="rounded-2xl border border-white/10 bg-[var(--card)] p-6"><div className="flex items-center justify-between"><h3 className="text-lg font-bold">{group.category}</h3><span className="text-xs font-bold text-[var(--accent)]">0{index + 1}</span></div><div className="mt-6 flex flex-wrap gap-2">{group.items.map(skill => <span key={skill} className={`rounded-lg border px-3 py-2 text-sm font-medium ${skillColors[skill] ?? "border-white/10 bg-white/[.04] text-[var(--text-secondary)]"}`}>{skill}</span>)}</div></article>)}</div></section>
+
+  <section className="section-block flex flex-col items-start justify-between gap-6 rounded-2xl border border-[var(--accent)]/20 bg-[var(--accent)]/[.06] p-7 sm:flex-row sm:items-center"><div><h2 className="text-xl font-bold">Want the printable version?</h2><p className="mt-2 text-sm text-[var(--text-secondary)]">Download the complete resume as a PDF.</p></div><a href="/resume_web_development.pdf" download className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-bold text-[#0b1020] transition hover:-translate-y-0.5">Download Resume</a></section>
+</main>;
 export default Resume;

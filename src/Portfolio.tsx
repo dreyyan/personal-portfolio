@@ -3,125 +3,34 @@ import ProjectCard from "./components/ProjectCard";
 import OtherProjectCard from "./components/OtherProjectCard";
 import { otherProjectsData } from "./data/projectsData";
 
+const projects = [
+  { image: "card-symptomatik-ai.png", number: "01", title: "SymptoMatik-AI", category: "Health AI", description: "An AI-assisted workflow that helps healthcare professionals prioritize symptoms and explore possible diagnoses.", stack: ["React", "AI", "Healthcare"], previewLink: "https://symptomatik-ai.vercel.app/sign-in", codeLink: "https://github.com/dreyyan/symptomatik-ai" },
+  { image: "card-happy-pill-bar-and-resto.png", number: "02", title: "Happy Pill", category: "Hospitality", description: "A lively digital home for a local restaurant, bringing its food, atmosphere, and events into one experience.", stack: ["React", "Responsive UI", "Brand web"], previewLink: "https://www.happypillbar.com/home", codeLink: "https://github.com/dreyyan/happy-pill" },
+  { image: "card-snippify.png", number: "03", title: "Snippify", category: "Developer tools", description: "A focused snippet hub for creating, organizing, searching, and sharing reusable pieces of code.", stack: ["TypeScript", "Productivity", "Search"], codeLink: "https://github.com/dreyyan/snippify" },
+  { image: "card-gigsta.png", number: "04", title: "Gigsta", category: "Marketplace", description: "A freelance marketplace concept designed to make hiring, discovery, and project matching feel direct and fast.", stack: ["React", "Marketplace", "UX"], codeLink: "https://github.com/dreyyan/gigsta" },
+];
+
 const Portfolio = () => {
-  const [otherProjects, setOtherProjects] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showAll, setShowAll] = useState(false);
+  const [category, setCategory] = useState("All");
+  const categories = ["All", ...new Set(otherProjectsData.map(project => project.category))];
+  const filtered = category === "All" ? otherProjectsData : otherProjectsData.filter(project => project.category === category);
 
-  // Get unique categories for the dropdown
-  const categories = ["All", ...Array.from(new Set(otherProjectsData.map(p => p.category)))];
-
-  // Filtered projects based on selected category
-  const filteredProjects =
-    selectedCategory === "All"
-      ? otherProjectsData
-      : otherProjectsData.filter(p => p.category === selectedCategory);
-
-  return (
-    <div className="flex-col w-auto h-auto py-16 px-10">
-      {!otherProjects ? (
-        <>
-          <p className="font-heading font-black text-5xl text-center mb-12">
-            PORTFOLIO
-          </p>
-
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8 justify-items-center">
-            <ProjectCard xl:grid-cols-4
-              imgSrc="card-symptomatik-ai.png"
-              title="SymptoMatik-AI"
-              subtitle="An AI-Powered Symptom Ranking and Diagnostic Assistant for Healthcare Professionals"
-              description="Developed a web application leveraging AI to assist healthcare professionals in ranking symptoms and suggesting potential diagnoses. Features include a responsive interface, intelligent symptom prioritization, and interactive recommendations to support clinical decision-making and improve diagnostic efficiency."
-              previewLink="https://symptomatik-ai.vercel.app/sign-in"
-              codeLink="https://github.com/dreyyan/symptomatik-ai"
-            />
-            <ProjectCard
-              imgSrc="card-happy-pill-bar-and-resto.png"
-              title="Happy Pill - Bar & Resto"
-              subtitle="A Vibrant Bar & Restaurant Showcasing Menu, Ambiance, and Events"
-              description="Designed and developed a promotional website for a one-stop bar and restaurant, showcasing menu items, ambiance, and entertainment offerings while enhancing online presence and customer engagement for local clientele."
-              previewLink="https://www.happypillbar.com/home"
-              codeLink="https://github.com/dreyyan/happy-pill"
-            />
-            <ProjectCard
-              imgSrc="card-snippify.png"
-              title="Snippify"
-              subtitle="Personal Code Snippet Hub for Creating, Organizing, and Sharing Code"
-              description="Developed a web-based platform for developers to efficiently create, organize, and share reusable code snippets. Features include tagging, search functionality, and a clean user interface designed to streamline coding workflows and improve productivity."
-              codeLink="https://github.com/dreyyan/snippify"
-            />
-            <ProjectCard
-              imgSrc="card-gigsta.png"
-              title="Gigsta"
-              subtitle="The Lightning-Fast Marketplace for Real Freelance Work"
-              description="Developed a responsive freelance marketplace web application designed to connect clients and freelancers quickly and efficiently. Features include streamlined job posting, talent discovery, project matching, and a clean user interface to optimize workflow and reduce transaction time."
-              codeLink="https://github.com/dreyyan/gigsta"
-            />
-          </div>
-
-          <div className="text-center">
-            <button onClick={() => setOtherProjects(true)}>
-              <p
-                className="relative inline-block text-[var(--text-secondary)] font-medium cursor-pointer
-                after:content-[''] after:absolute after:bottom-0 after:h-[1px] 
-                after:bg-[var(--text-primary)] after:left-1/2 after:-translate-x-1/2 
-                after:w-0 hover:after:w-full after:transition-all after:duration-300"
-              >
-                Other Projects →
-              </p>
-            </button>
-          </div>
-        </>
-      ) : (
-        <>
-            {/* [BUTTON] Back */}
-            <button
-                onClick={() => setOtherProjects(false)}
-                className="fixed top-20 left-4 z-50 flex items-center gap-2 bg-[var(--secondary-background)] rounded-lg px-3 py-2 shadow-md hover:bg-[var(--card)] transition cursor-pointer"
-            >
-                <span className="text-[var(--text-primary)] font-bold">←</span>
-                <span className="text-[var(--text-secondary)] font-medium">Back</span>
-            </button>
-
-          <p className="font-heading font-black text-5xl text-center mb-8">
-            OTHER PROJECTS
-          </p>
-
-            {/* Category Filter Dropdown */}
-            <div className="relative w-full mb-8">
-            {/* Custom left arrow */}
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-                ▼
-            </span>
-
-            <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="appearance-none pl-8 pr-4 py-2 w-full border border-gray-300 rounded-lg bg-[var(--secondary-background)] text-[var(--text-secondary)]"
-            >
-                {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                    {cat}
-                </option>
-                ))}
-            </select>
-            </div>
-
-          {/* Filtered Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
-            {filteredProjects.map((project, index) => (
-                <OtherProjectCard
-                key={index}
-                title={project.title}
-                category={project.category}       // ← now displayed as badge
-                skills={project.skills}           // ← displayed as badges
-                description={project.description}
-                />
-            ))}
-          </div>
-        </>
-      )}
+  return <main className="page-shell">
+    <div className="flex flex-wrap items-end justify-between gap-6">
+      <div><p className="eyebrow">Selected work</p><h1 className="mt-4 section-title">Projects with purpose.</h1><p className="mt-4 max-w-2xl text-[var(--text-secondary)]">A selection of products, experiments, and tools built around useful interaction and dependable implementation.</p></div>
+      <p className="rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--text-secondary)]">4 featured projects</p>
     </div>
-  );
+
+    <section className="mx-auto mt-14 grid max-w-[888px] gap-7 md:grid-cols-2">
+      {projects.map(project => <ProjectCard key={project.title} {...project} />)}
+    </section>
+
+    <section className="mt-20 border-t border-white/10 pt-10">
+      <div className="flex flex-wrap items-center justify-between gap-5"><div><p className="eyebrow">More explorations</p><h2 className="mt-2 text-2xl font-bold">The project archive</h2></div><button className="rounded-full border border-white/20 px-5 py-2 text-sm font-semibold transition hover:border-[var(--accent)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]" onClick={() => setShowAll(!showAll)}>{showAll ? "Close archive" : "Browse archive"}</button></div>
+      {showAll && <><div className="mt-7"><label className="mr-3 text-sm text-[var(--text-secondary)]" htmlFor="category">Filter by focus</label><select id="category" value={category} onChange={event => setCategory(event.target.value)} className="rounded-lg border border-white/15 bg-[var(--card)] px-3 py-2 text-sm">{categories.map(item => <option key={item}>{item}</option>)}</select></div><div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{filtered.map(project => <OtherProjectCard key={project.title} {...project} />)}</div></>}
+    </section>
+  </main>;
 };
 
 export default Portfolio;

@@ -1,67 +1,43 @@
 interface ProjectCardProps {
-  imgSrc?: string;
-  title: string;
-  subtitle?: string;
-  description: string;
-  previewLink?: string;
-  codeLink: string;
+  image: string; number: string; title: string; category: string;
+  description: string; stack: readonly string[]; previewLink?: string; codeLink: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ imgSrc, title, subtitle, description, previewLink, codeLink }) => {
-  const isPreviewDisabled = !previewLink;
+const tagColors: Record<string, string> = {
+  React: "border-[#61DAFB]/35 bg-[#61DAFB]/10 text-[#61DAFB]",
+  TypeScript: "border-[#3178C6]/45 bg-[#3178C6]/15 text-[#70B7F0]",
+  AI: "border-violet-400/40 bg-violet-400/10 text-violet-300",
+  Healthcare: "border-rose-400/40 bg-rose-400/10 text-rose-300",
+  "Responsive UI": "border-emerald-400/40 bg-emerald-400/10 text-emerald-300",
+  "Brand web": "border-amber-400/40 bg-amber-400/10 text-amber-300",
+  Productivity: "border-orange-400/40 bg-orange-400/10 text-orange-300",
+  Search: "border-cyan-400/40 bg-cyan-400/10 text-cyan-300",
+  Marketplace: "border-fuchsia-400/40 bg-fuchsia-400/10 text-fuchsia-300",
+  UX: "border-pink-400/40 bg-pink-400/10 text-pink-300",
+};
 
-  return (
-    <div className="rounded-xl shadow-lg overflow-hidden bg-[var(--card)] flex flex-col w-full max-w-sm">
-      {/* Responsive 4:3 image */}
-      <div className="w-full aspect-[4/3] overflow-hidden rounded-t-[14px]">
-        <img
-          src={imgSrc}
-          alt={title}
-          className="w-full h-full object-cover flex justify-center items-center"
-        />
+const ProjectCard = ({ image, number, title, category, description, stack, previewLink, codeLink }: ProjectCardProps) => (
+  <article className="group mx-auto flex h-full w-full max-w-[430px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[var(--card)] transition duration-300 hover:-translate-y-1.5 hover:border-[var(--accent)]/45 hover:shadow-2xl hover:shadow-cyan-950/25">
+    <div className="relative aspect-[4/3] overflow-hidden bg-[#0e1527]">
+      <img src={`/${image}`} width="400" height="300" alt={`${title} project preview`} className="h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0b1020]/90 via-transparent to-[#0b1020]/10" />
+      <div className="absolute left-5 top-5 flex items-center gap-2.5">
+        <span className="grid size-9 place-items-center rounded-full border border-white/20 bg-[#0b1020]/75 text-xs font-bold backdrop-blur">{number}</span>
+        <span className="rounded-full border border-white/15 bg-[#0b1020]/75 px-3 py-1.5 text-xs font-semibold text-[var(--accent)] backdrop-blur">{category}</span>
       </div>
-
-      <div className="bg-[var(--card)] rounded-b-[14px] flex flex-col flex-grow">
-        <div className="px-4 py-4 flex flex-col gap-3 flex-grow">
-          <h3 className="font-heading font-bold text-xl">{title}</h3>
-
-          {/* Subtitle */}
-          {subtitle ? (
-            <p className="font-body text-sm font-medium text-gray-400 italic">{subtitle}</p>
-          ) : null}
-
-          <p className="font-body text-sm text-[var(--text-secondary)]">{description}</p>
-        </div>
-
-        {/* Buttons */}
-        <div className="flex">
-          <a
-            href={isPreviewDisabled ? undefined : previewLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex-1 flex justify-center items-center text-center text-sm font-bold py-1 rounded-bl-xl
-                        transition-colors duration-300
-                        ${isPreviewDisabled 
-                          ? 'bg-gray-400 text-gray-200 cursor-not-allowed pointer-events-none' 
-                          : 'text-[var(--text-primary)] bg-[var(--accent)] hover:bg-[var(--accent)]/80'
-                        }`}
-          >
-            PREVIEW
-          </a>
-
-          <a
-            href={codeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex justify-center items-center text-center text-sm font-bold text-[var(--color-accent)] py-1 rounded-br-xl border border-[var(--color-accent)]
-                       transition-colors duration-300 hover:border-t-[var(--text-primary)]/80 hover:border-b-[var(--text-primary)]/80 hover:border-r-[var(--text-primary)]/80 hover:text-[var(--text-primary)]/80 focus:outline-none"
-          >
-            View Code →
-          </a>
-        </div>
+      <h3 className="absolute bottom-5 left-5 right-5 text-2xl font-bold tracking-tight text-white">{title}</h3>
+    </div>
+    <div className="flex flex-1 flex-col p-6 sm:p-7">
+      <p className="min-h-[4.5rem] text-sm leading-6 text-[var(--text-secondary)]">{description}</p>
+      <div className="mt-6 mb-7 flex min-h-8 flex-wrap content-start gap-2">
+        {stack.map(item => <span key={item} className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold ${tagColors[item] ?? "border-white/15 bg-white/5 text-[var(--text-secondary)]"}`}><span className="size-1.5 rounded-full bg-current" />{item}</span>)}
+      </div>
+      <div className="mt-auto grid grid-cols-2 gap-3 border-t border-white/10 pt-6">
+        {previewLink ? <a className="rounded-lg bg-[var(--accent)] px-3 py-3 text-center text-sm font-bold text-[#0b1020] transition hover:-translate-y-0.5 hover:brightness-110" href={previewLink} target="_blank" rel="noreferrer">Visit project</a> : <span className="rounded-lg border border-white/10 px-3 py-3 text-center text-sm text-[var(--text-secondary)]">No live demo</span>}
+        <a className="rounded-lg border border-white/15 px-3 py-3 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]" href={codeLink} target="_blank" rel="noreferrer">View code</a>
       </div>
     </div>
-  );
-};
+  </article>
+);
 
 export default ProjectCard;
