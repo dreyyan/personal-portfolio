@@ -1,49 +1,22 @@
-interface OtherProjectCardProps {
+import { Tag } from "./ui";
+
+interface Props {
   title: string;
-  category: string;
-  skills?: string[];
+  date: string;
   description: string;
+  skills?: string[];
 }
 
-const OtherProjectCard: React.FC<OtherProjectCardProps> = ({
-  title,
-  category,
-  skills = [],
-  description,
-}) => {
-  const textLine = [category, ...skills].join(" · ");
-
-  return (
-    <div className="rounded-xl shadow-lg overflow-hidden bg-[var(--secondary-background)] flex flex-col w-full max-w-sm">
-      <div className="bg-[var(--card)] rounded-b-[14px] h-full">
-        <div className="px-4 py-4 flex flex-col gap-3">
-          <h3 className="font-heading font-bold text-xl">{title}</h3>
-
-          {/* Desktop badges */}
-          <div className="hidden md:flex flex-wrap gap-2">
-            <span className="text-xs font-semibold bg-[var(--primary-color)] text-white px-2 py-1 rounded-full">
-              {category}
-            </span>
-            {skills.map((skill, i) => (
-              <span
-                key={i}
-                className="text-xs font-medium bg-gray-200 text-gray-700 px-2 py-1 rounded-full"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-
-          {/* Mobile single-line text */}
-          <div className="md:hidden text-sm text-[var(--text-secondary)]/50">
-            {textLine}
-          </div>
-
-          <p className="font-body text-sm text-[var(--text-secondary)]">{description}</p>
-        </div>
-      </div>
+/** A compact row in the project archive table. */
+const OtherProjectCard = ({ title, date, description, skills = [] }: Props) => (
+  <li className="grid gap-x-8 gap-y-2 border-t border-line py-5 md:grid-cols-[4rem_14rem_1fr_auto] md:items-baseline">
+    <p className="font-mono text-xs text-faint">{date ? date.slice(-4) : "—"}</p>
+    <h3 className="text-base">{title}</h3>
+    <p className="text-sm text-muted">{description}</p>
+    <div className="flex flex-wrap gap-1.5 md:justify-end">
+      {skills.slice(0, 2).map(skill => <Tag key={skill}>{skill}</Tag>)}
     </div>
-  );
-};
+  </li>
+);
 
 export default OtherProjectCard;

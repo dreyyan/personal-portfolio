@@ -1,67 +1,76 @@
-interface ProjectCardProps {
-  imgSrc?: string;
-  title: string;
-  subtitle?: string;
-  description: string;
-  previewLink?: string;
-  codeLink: string;
-}
+import type { FeaturedProject } from "../data/projectsData";
+import { Tag, TextLink } from "./ui";
+import { Tilt } from "./fx";
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ imgSrc, title, subtitle, description, previewLink, codeLink }) => {
-  const isPreviewDisabled = !previewLink;
+/** Stable 0-1 value per title, so each generated cover places its glow differently. */
+const seed = (text: string) => ([...text].reduce((sum, ch) => (sum * 31 + ch.charCodeAt(0)) % 100003, 7) % 1000) / 1000;
 
+/** Typographic cover for projects that have no screenshot yet. */
+const ProjectCover = ({ title, stack, codeLink }: Pick<FeaturedProject, "title" | "stack" | "codeLink">) => {
+  const s = seed(title);
+  const repo = codeLink.replace("https://github.com/", "");
   return (
-    <div className="rounded-xl shadow-lg overflow-hidden bg-[var(--card)] flex flex-col w-full max-w-sm">
-      {/* Responsive 4:3 image */}
-      <div className="w-full aspect-[4/3] overflow-hidden rounded-t-[14px]">
-        <img
-          src={imgSrc}
-          alt={title}
-          className="w-full h-full object-cover flex justify-center items-center"
-        />
+    <div aria-hidden="true" className="relative flex aspect-16/10 w-full flex-col justify-between overflow-hidden p-6 sm:p-7">
+      <div className="absolute inset-0 bg-[radial-gradient(rgb(148_163_184/0.18)_1px,transparent_1px)] bg-size-[18px_18px] mask-[linear-gradient(180deg,black,transparent_85%)]" />
+      <div
+        className="absolute size-72 rounded-full bg-accent/20 blur-3xl transition duration-700 group-hover:scale-125 group-hover:bg-accent/30"
+        style={{ left: `${10 + s * 55}%`, top: `${20 + ((s * 7) % 1) * 40}%` }}
+      />
+      <div className="relative flex items-center gap-1.5">
+        <span className="size-2.5 rounded-full bg-white/15" />
+        <span className="size-2.5 rounded-full bg-white/15" />
+        <span className="size-2.5 rounded-full bg-white/15" />
+        <span className="ml-3 truncate font-mono text-xs text-faint">github.com/{repo}</span>
       </div>
-
-      <div className="bg-[var(--card)] rounded-b-[14px] flex flex-col flex-grow">
-        <div className="px-4 py-4 flex flex-col gap-3 flex-grow">
-          <h3 className="font-heading font-bold text-xl">{title}</h3>
-
-          {/* Subtitle */}
-          {subtitle ? (
-            <p className="font-body text-sm font-medium text-gray-400 italic">{subtitle}</p>
-          ) : null}
-
-          <p className="font-body text-sm text-[var(--text-secondary)]">{description}</p>
-        </div>
-
-        {/* Buttons */}
-        <div className="flex">
-          <a
-            href={isPreviewDisabled ? undefined : previewLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex-1 flex justify-center items-center text-center text-sm font-bold py-1 rounded-bl-xl
-                        transition-colors duration-300
-                        ${isPreviewDisabled 
-                          ? 'bg-gray-400 text-gray-200 cursor-not-allowed pointer-events-none' 
-                          : 'text-[var(--text-primary)] bg-[var(--accent)] hover:bg-[var(--accent)]/80'
-                        }`}
-          >
-            PREVIEW
-          </a>
-
-          <a
-            href={codeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex justify-center items-center text-center text-sm font-bold text-[var(--color-accent)] py-1 rounded-br-xl border border-[var(--color-accent)]
-                       transition-colors duration-300 hover:border-t-[var(--text-primary)]/80 hover:border-b-[var(--text-primary)]/80 hover:border-r-[var(--text-primary)]/80 hover:text-[var(--text-primary)]/80 focus:outline-none"
-          >
-            View Code →
-          </a>
-        </div>
+      <div className="relative">
+        <p className="text-3xl font-semibold tracking-tight text-ink transition duration-500 group-hover:translate-x-1 sm:text-4xl">{title}</p>
+        <p className="mt-2 font-mono text-xs text-accent/80">
+          <span className="text-faint">$</span> {stack.slice(0, 3).join(" · ")}
+        </p>
       </div>
     </div>
   );
 };
+
+const ProjectCard = ({ image, title, category, description, stack, previewLink, codeLink }: FeaturedProject) => (
+  <article className="group flex flex-col">
+    <Tilt max={7} className="rounded-2xl">
+      <a
+        href={previewLink ?? codeLink}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open ${title}`}
+        className="relative block overflow-hidden rounded-2xl border border-line bg-surface transition duration-300 group-hover:border-accent/40 group-hover:shadow-2xl group-hover:shadow-accent/10"
+      >
+        {image ? (
+          <img
+            src={`/${image}`}
+            width={400}
+            height={300}
+            loading="lazy"
+            alt={`Screenshot of ${title}`}
+            className="aspect-16/10 w-full object-cover object-top transition duration-700 group-hover:scale-[1.04]"
+          />
+        ) : (
+          <ProjectCover title={title} stack={stack} codeLink={codeLink} />
+        )}
+        <div className="tilt-glare" />
+      </a>
+    </Tilt>
+
+    <div className="mt-5 flex flex-1 flex-col">
+      <p className="font-mono text-xs text-faint">{category}</p>
+      <h3 className="mt-1.5 text-xl">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {stack.map(item => <Tag key={item}>{item}</Tag>)}
+      </div>
+      <div className="mt-5 flex gap-5">
+        {previewLink && <TextLink href={previewLink}>Live site</TextLink>}
+        <TextLink href={codeLink}>Source code</TextLink>
+      </div>
+    </div>
+  </article>
+);
 
 export default ProjectCard;

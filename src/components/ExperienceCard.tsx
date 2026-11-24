@@ -1,41 +1,37 @@
-import type React from "react";
+import type { ReactNode } from "react";
+import { Tag } from "./ui";
 
-interface ExperienceCardProps {
-    title: string;
-    iconUrl: string;
-    category: string;
-    yearRange: string;
-    description: string[];
+interface Props {
+  title: string;
+  category: string;
+  /** Left column: dates, or anything short (e.g. a link). */
+  meta: ReactNode;
+  description: string[];
+  tags?: string[];
 }
 
-const ExperienceCard: React.FC<ExperienceCardProps> = ({ title, iconUrl, category, yearRange, description }) => {
-    return (
-        <div className="relative bg-[var(--card)] pb-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-            <div className="flex mb-4">
-                <div className="bg-[var(--secondary-background)] w-full rounded-tl-lg"></div>
-                {/* Icon at top-right */}
-                <div className=" bg-[var(--accent)] rounded-tr-lg p-2 py-1">
-                    <img src={iconUrl} alt={title} className="size-8" />
-                </div>
-            </div>
-
-            <div className="px-6 space-y-2">
-                <div>
-                    <h4 className="text-xl font-bold">{title}</h4>
-                    <p className="text-sm text-gray-500 my-2 pb-3">{category} • {yearRange}</p>
-                    <div className="w-full border-b"></div>
-                </div>
-
-                <ul className="list-disc list-inside space-y-2 mt-4">
-                    {description.map((point, index) => (
-                        <li key={index} className="text-[var(--text-secondary)]">
-                            {point}
-                        </li>
-                    ))}
-                </ul>
-            </div>
+/** One row of the resume timeline: meta on the left, title and highlights on the right. */
+const ExperienceCard = ({ title, category, meta, description, tags }: Props) => (
+  <article className="grid gap-3 border-t border-line py-8 sm:grid-cols-[10rem_1fr] sm:gap-8">
+    <div className="font-mono text-xs text-faint sm:pt-1.5">{meta}</div>
+    <div>
+      <h3 className="text-lg">{title}</h3>
+      <p className="mt-0.5 text-sm text-accent">{category}</p>
+      {tags && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
         </div>
-    );
-};
+      )}
+      <ul className="mt-4 space-y-2.5">
+        {description.map(point => (
+          <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted">
+            <span className="mt-2.5 h-px w-3 shrink-0 bg-faint" />
+            {point}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </article>
+);
 
 export default ExperienceCard;

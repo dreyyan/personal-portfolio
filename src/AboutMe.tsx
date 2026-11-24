@@ -1,102 +1,97 @@
-import { useState } from "react";
+import { ContactBand, SectionHeader } from "./components/ui";
 
-const aboutSections = [
-  {
-    key: "why",
-    title: "WHY I CODE",
-    img: "/why-i-code.png",
-    alt: "Why I Code",
-    description: `Hi, I’m Adrian — a full-stack web developer and technopreneur from the Philippines. I’ve always been fascinated by how technology can turn ideas into real solutions, and that curiosity has driven me to build software that makes life easier, more efficient, and more fun.`,
-  },
-  {
-    key: "spec",
-    title: "SPECIALIZATION",
-    img: "/specialization.webp",
-    alt: "Specialization",
-    description: `I specialize in React, TypeScript, and Python, creating web apps that are scalable, responsive, and user-friendly. From concept to deployment, I enjoy solving problems with clean, maintainable code and seeing my projects come to life.`,
-  },
-  {
-    key: "values",
-    title: "VALUES & MINDSET",
-    img: "/values-and-mindset.webp",
-    alt: "Values and Mindset",
-    description: `Beyond coding, I value continuous learning, creativity, and impact. I approach every project with a growth mindset, embracing challenges as opportunities to improve and deliver meaningful results. I love collaborating with others, sharing knowledge, and finding innovative ways to bridge technology and everyday needs.`,
-  },
+const facts = [
+  ["3.91", "U.S. GPA equivalent at West Visayas State University"],
+  ["3×", "Gold Medal for Academic Excellence, 2024 – 2026"],
+  ["2028", "Expected BS in Computer Science, Roosevelt University"],
 ];
 
-const Home = () => {
-    const [aboutLoaded, setAboutLoaded] = useState(false);
-    const [loaded, setLoaded] = useState<Record<string, boolean>>({});
+const interests = ["Machine Learning & AI", "Software & Systems Engineering", "Cloud & Distributed Systems"];
 
-    return (
-        <div className="flex-col w-auto h-auto py-16 px-10">
+const principles = [
+  ["Build with intent", "I start by getting clear on the person and the problem a product is meant to serve."],
+  ["Make complexity useful", "Good technology should make a difficult task feel understandable and approachable."],
+  ["Keep learning in public", "Every project is a chance to sharpen my craft and share what I discover."],
+];
 
-            {/* [IMAGE] About Me */}
-            <div className="relative w-full aspect-[3/4] mb-12 max-w-80 mx-auto">
-                  {!loaded && (
-                  <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
-                  )}
-
-                <img
-                    src="/profile-picture.png"
-                    alt="About Me - Picture"
-                    onLoad={() => setAboutLoaded(true)}
-                    className={`w-full h-full object-cover transition-opacity duration-300 ${
-                    aboutLoaded ? "opacity-100" : "opacity-0"
-                    }`}
-            />
-            </div>
-
-            {/* About Me - Role & Education */}
-            <div className="mb-20 px-14 space-y-4">
-                <p className="font-heading font-black text-5xl sm:text-6xl md:text-7xl text-center mb-12">ABOUT ME</p>
-                <p className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl tracking-widest text-center">ADRIAN TAN</p>
-
-                <div className="sm:flex justify-center gap-x-2 [&>p]:font-heading [&>p]:font-bold [&>p]:text-lg [&>p]:sm:text-xl [&>p]:md:text-2xl [&>p]:text-center">
-                <p>WEB DEVELOPER</p>
-                <p className="hidden sm:block">◦</p>
-                <p>TECHNOPRENEUR</p>
-                </div>
-
-                <div className="space-y-1">
-                    <p className="font-heading font-bold text-sm sm:text-md md:text-lg text-center">BS COMPUTER SCIENCE</p>
-                    <p className="font-heading italic text-sm sm:text-md md:text-lg text-center">WEST VISAYAS STATE UNIVERSITY (2028)</p>
-                </div>
-            </div>
-
-            {/* About Me - Description */}
-            <div className="md:px-20 lg:px-32 xl:px-60 2xl:px-120">
-            {aboutSections.map((section) => (
-                <div key={section.key} className="mb-19 space-y-6 md:grid md:grid-cols-2 md:gap-x-8 lg:gap-x-12">
-                {/* Aspect Ratio Container */}
-                <div className="relative w-full h-full aspect-[4/3] rounded overflow-hidden">
-                    {!loaded[section.key] && (
-                    <div className="absolute inset-0 animate-pulse bg-[var(--color-accent)]" />
-                    )}
-
-                    <img
-                    src={section.img}
-                    alt={section.alt}
-                    onLoad={() =>
-                        setLoaded((prev) => ({ ...prev, [section.key]: true }))
-                    }
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-                        loaded[section.key] ? "opacity-100" : "opacity-0"
-                    }`}
-                    />
-                </div>
-
-                    <div className="space-y-6">
-                        <header className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl">
-                            {section.title}
-                        </header>
-
-                        <p className="md:text-md lg:text-lg">{section.description}</p>
-                    </div>
-                </div>
-            ))}
-            </div>
+const AboutMe = () => (
+  <>
+    <section className="container-page grid items-center gap-12 pb-16 pt-14 sm:pt-20 lg:grid-cols-[1fr_1.4fr] lg:gap-16 lg:pt-24">
+      <img
+        src="/profile-picture.webp"
+        width={800}
+        height={800}
+        alt="Portrait of Adrian Tan"
+        className="mx-auto aspect-4/5 w-full max-w-sm rounded-3xl border border-line object-cover object-[50%_20%] lg:max-w-none"
+      />
+      <div>
+        <p className="eyebrow">About me</p>
+        <h1 className="mt-4 text-4xl leading-[1.08] sm:text-5xl">Curious by nature. Intentional by practice.</h1>
+        <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+          <p>
+            I'm Adrian Dominic Tan, a Computer Science student at Roosevelt University in Chicago. I began my degree at West Visayas State University in Iloilo, Philippines, before moving to Chicago to continue it.
+          </p>
+          <p>
+            Technology hooked me because it can turn a simple observation into something people depend on. I enjoy turning ambiguous ideas into digital products people can actually use.
+          </p>
         </div>
-	);
-};
-export default Home;
+      </div>
+    </section>
+
+    <section className="container-page pb-20">
+      <dl className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
+        {facts.map(([value, label]) => (
+          <div key={label} className="bg-bg p-6 sm:p-7">
+            <dt className="sr-only">{label}</dt>
+            <dd className="text-3xl font-semibold tracking-tight text-accent">{value}</dd>
+            <dd className="mt-1 text-sm text-muted">{label}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section className="container-page grid items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16">
+      <img
+        src="/about-craft.webp"
+        width={1400}
+        height={1050}
+        loading="lazy"
+        alt="Desk with a notebook of wireframes next to a laptop showing a dashboard"
+        className="aspect-4/3 w-full rounded-3xl border border-line object-cover"
+      />
+      <div>
+        <p className="eyebrow">How I work</p>
+        <h2 className="mt-3 text-3xl sm:text-4xl">A practical, full‑stack point of view.</h2>
+        <p className="mt-5 leading-relaxed text-muted">
+          I work across React, TypeScript, Node.js, FastAPI and Python, with PostgreSQL and Prisma for data. I sketch the flow first, ship a working version early, then refine it with real feedback.
+        </p>
+        <p className="mt-4 leading-relaxed text-muted">
+          The goal is always the same: clean, maintainable work that makes the next step easier for users and for whoever touches the code after me.
+        </p>
+        <p className="mt-8 text-sm text-faint">Research interests</p>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {interests.map(item => (
+            <li key={item} className="rounded-full border border-accent/30 bg-accent/5 px-3 py-1 text-sm text-accent">{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section className="container-page py-20">
+      <SectionHeader eyebrow="Principles" title="What guides my work" />
+      <div className="grid gap-6 md:grid-cols-3">
+        {principles.map(([title, copy], i) => (
+          <article key={title} className="rounded-2xl border border-line bg-surface p-7">
+            <p className="font-mono text-xs text-accent">0{i + 1}</p>
+            <h3 className="mt-6 text-lg">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{copy}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <ContactBand />
+  </>
+);
+
+export default AboutMe;

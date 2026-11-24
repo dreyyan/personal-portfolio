@@ -1,50 +1,38 @@
-import FooterSection from "./FooterSection";
+import { Icon, type IconName } from "./Icons";
+import { site } from "../data/site";
 
-const Footer = () => {
-  return (
-    <footer className="border-t border-[var(--text-primary)] bg-[var(--secondary-background)] text-[var(--text-primary)]">
-      
-      {/* Main Sections */}
-      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-10">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-between gap-8 text-center sm:text-left">
-          
-          <FooterSection
-            iconSrc="address-icon.svg"
-            title="Address"
-            description="Iloilo City, PH"
-            onClick={() => {
-              const address = encodeURIComponent("Iloilo City, Philippines");
-              window.open(
-                `https://www.google.com/maps/search/?api=1&query=${address}`,
-                "_blank"
-              );
-            }}
-          />
+const socials: [IconName, string, string][] = [
+  ["github", "GitHub", site.github],
+  ["linkedin", "LinkedIn", site.linkedin],
+  ["email", "Email", `mailto:${site.email}`],
+];
 
-          <FooterSection
-            iconSrc="email-icon.svg"
-            title="Email"
-            description="adriandominic.tan@wvsu.edu.ph"
-            onClick={() =>
-              (window.location.href =
-                "mailto:adriandominic.tan@wvsu.edu.ph")
-            }
-          />
-        </div>
+export const SocialLinks = ({ className = "" }: { className?: string }) => (
+  <div className={`flex items-center gap-1 ${className}`}>
+    {socials.map(([icon, label, href]) => (
+      <a
+        key={label}
+        href={href}
+        aria-label={label}
+        title={label}
+        {...(href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+        className="grid size-10 place-items-center rounded-full text-muted transition hover:bg-white/5 hover:text-accent"
+      >
+        <Icon name={icon} className="size-[1.15rem]" />
+      </a>
+    ))}
+  </div>
+);
 
-        {/* Divider */}
-        <div className="border-t border-[var(--text-primary)]/20 mt-10 pt-6 text-center space-y-2">
-          <p className="text-sm font-medium opacity-80">
-            © 2024–{new Date().getFullYear()} Adrian Tan. All rights reserved.
-          </p>
-
-          <p className="text-xs opacity-70">
-            • FULL-STACK WEB DEVELOPER • TECHNOPRENEUR •
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-};
+const Footer = () => (
+  <footer className="border-t border-line">
+    <div className="container-page flex flex-col gap-4 py-8 text-sm text-faint sm:flex-row sm:items-center sm:justify-between">
+      <p>
+        © {new Date().getFullYear()} {site.name} · {site.location}
+      </p>
+      <SocialLinks className="-ml-3 sm:ml-0 sm:-mr-3" />
+    </div>
+  </footer>
+);
 
 export default Footer;
