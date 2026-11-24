@@ -1,3 +1,37 @@
-interface Props { title: string; iconUrl: string; category: string; yearRange: string; description: string[]; }
-const ExperienceCard = ({ title, iconUrl, category, yearRange, description }: Props) => <article className="h-full rounded-2xl border border-white/10 bg-[var(--card)] p-6 sm:p-7"><div className="flex items-start justify-between gap-5"><div><p className="eyebrow">{category}</p><h3 className="mt-3 text-xl font-bold">{title}</h3><p className="mt-2 text-sm text-[var(--text-secondary)]">{yearRange}</p></div><div className="grid size-11 shrink-0 place-items-center rounded-xl border border-[var(--accent)]/25 bg-[var(--accent)]/15"><img src={iconUrl} alt="" className="size-6 brightness-0 invert" /></div></div><div className="mt-6 space-y-4 border-t border-white/10 pt-6">{description.map(point => <div key={point} className="flex gap-3"><span className="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--accent)]" /><p className="text-sm leading-6 text-[var(--text-secondary)]">{point}</p></div>)}</div></article>;
+import type { ReactNode } from "react";
+import { Tag } from "./ui";
+
+interface Props {
+  title: string;
+  category: string;
+  /** Left column: dates, or anything short (e.g. a link). */
+  meta: ReactNode;
+  description: string[];
+  tags?: string[];
+}
+
+/** One row of the resume timeline: meta on the left, title and highlights on the right. */
+const ExperienceCard = ({ title, category, meta, description, tags }: Props) => (
+  <article className="grid gap-3 border-t border-line py-8 sm:grid-cols-[10rem_1fr] sm:gap-8">
+    <div className="font-mono text-xs text-faint sm:pt-1.5">{meta}</div>
+    <div>
+      <h3 className="text-lg">{title}</h3>
+      <p className="mt-0.5 text-sm text-accent">{category}</p>
+      {tags && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {tags.map(tag => <Tag key={tag}>{tag}</Tag>)}
+        </div>
+      )}
+      <ul className="mt-4 space-y-2.5">
+        {description.map(point => (
+          <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted">
+            <span className="mt-2.5 h-px w-3 shrink-0 bg-faint" />
+            {point}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </article>
+);
+
 export default ExperienceCard;

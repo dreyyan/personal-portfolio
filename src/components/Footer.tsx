@@ -1,4 +1,38 @@
-import { SocialIcon } from "../Home";
-const linkClass = "group inline-flex items-center gap-2 transition duration-300 hover:-translate-y-0.5 hover:text-[var(--accent)]";
-const Footer = () => <footer className="relative border-t border-white/8"><div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 text-sm text-[var(--text-secondary)] sm:flex-row sm:items-center sm:justify-between sm:px-10"><div><p className="font-semibold text-white">Adrian Tan</p><p className="mt-1">Full-stack developer & technopreneur | Iloilo City, PH</p></div><div className="flex gap-5"><a aria-label="Email Adrian" className={linkClass} href="mailto:adriandominic.tan@wvsu.edu.ph"><SocialIcon name="email" />Email<span className="opacity-0 transition group-hover:opacity-100">-&gt;</span></a><a aria-label="Adrian's GitHub" className={linkClass} href="https://github.com/dreyyan" target="_blank" rel="noreferrer"><SocialIcon name="github" />GitHub<span className="opacity-0 transition group-hover:opacity-100">-&gt;</span></a><a aria-label="Adrian's LinkedIn" className={linkClass} href="https://www.linkedin.com/in/dreyyan/" target="_blank" rel="noreferrer"><SocialIcon name="linkedin" />LinkedIn<span className="opacity-0 transition group-hover:opacity-100">-&gt;</span></a></div><p>(c) {new Date().getFullYear()}</p></div></footer>;
+import { Icon, type IconName } from "./Icons";
+import { site } from "../data/site";
+
+const socials: [IconName, string, string][] = [
+  ["github", "GitHub", site.github],
+  ["linkedin", "LinkedIn", site.linkedin],
+  ["email", "Email", `mailto:${site.email}`],
+];
+
+export const SocialLinks = ({ className = "" }: { className?: string }) => (
+  <div className={`flex items-center gap-1 ${className}`}>
+    {socials.map(([icon, label, href]) => (
+      <a
+        key={label}
+        href={href}
+        aria-label={label}
+        title={label}
+        {...(href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+        className="grid size-10 place-items-center rounded-full text-muted transition hover:bg-white/5 hover:text-accent"
+      >
+        <Icon name={icon} className="size-[1.15rem]" />
+      </a>
+    ))}
+  </div>
+);
+
+const Footer = () => (
+  <footer className="border-t border-line">
+    <div className="container-page flex flex-col gap-4 py-8 text-sm text-faint sm:flex-row sm:items-center sm:justify-between">
+      <p>
+        © {new Date().getFullYear()} {site.name} · {site.location}
+      </p>
+      <SocialLinks className="-ml-3 sm:ml-0 sm:-mr-3" />
+    </div>
+  </footer>
+);
+
 export default Footer;

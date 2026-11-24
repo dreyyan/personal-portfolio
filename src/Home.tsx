@@ -1,15 +1,154 @@
 import { Link } from "react-router-dom";
+import ProjectCard from "./components/ProjectCard";
+import { SocialLinks } from "./components/Footer";
+import { Button, ContactBand, SectionHeader } from "./components/ui";
+import { DotField, FloatChip, Magnetic, Reveal, RotatingPhrase, SplitWords, Spotlight, Tilt } from "./components/fx";
+import { featuredProjects } from "./data/projectsData";
 
-type IconName = "github" | "linkedin" | "email";
-export const SocialIcon = ({ name }: { name: IconName }) => {
-  const paths = { github: "M12 2C6.48 2 2 6.58 2 12.25c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.49v-1.89c-2.78.62-3.37-1.22-3.37-1.22-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .08 1.54 1.06 1.54 1.06.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.15-4.56-5.1 0-1.13.39-2.05 1.03-2.78-.1-.26-.45-1.32.1-2.75 0 0 .85-.28 2.75 1.06a9.2 9.2 0 0 1 5 0c1.9-1.34 2.75-1.06 2.75-1.06.55 1.43.2 2.49.1 2.75.64.73 1.03 1.65 1.03 2.78 0 3.96-2.35 4.83-4.59 5.08.36.33.68.96.68 1.94v2.88c0 .27.18.6.69.49A10.27 10.27 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z", linkedin: "M6.2 8.1H2.6V21h3.6V8.1ZM4.4 2.4a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM21.4 13.6c0-3.9-2.1-5.7-4.9-5.7-2.3 0-3.3 1.3-3.8 2.2V8.1H9.1V21h3.6v-6.4c0-1.7.3-3.3 2.3-3.3 2 0 2 1.9 2 3.4V21h3.6v-7.4Z", email: "M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 3 9 5.5L21 8V7l-9 5.5L3 7v1Z" };
-  return <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4 fill-current"><path d={paths[name]} /></svg>;
-};
+const strengths = [
+  ["Full-stack delivery", "React and TypeScript interfaces backed by Node, Express and FastAPI services, with PostgreSQL and Prisma underneath."],
+  ["Machine learning in practice", "Training models and wiring them into usable products, like SymptoMatik-AI's symptom-ranking assistant."],
+  ["Systems thinking", "Designing data models and workflows that hold up, from school records in PaviaOne to inventory in SmartPOS."],
+];
 
-const ExternalArrow = () => <span className="ml-0.5 grid size-5 place-items-center rounded-full bg-white/[.06] transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:bg-[var(--accent)]/15"><svg aria-hidden="true" viewBox="0 0 20 20" className="size-3.5 fill-none stroke-current" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 14 14 6M8 6h6v6" /></svg></span>;
+const stack = ["Python", "TypeScript", "JavaScript", "C++", "SQL", "React", "Next.js", "Node.js", "Express.js", "FastAPI", "SQLAlchemy", "Prisma", "Pandas", "AWS", "PostgreSQL", "MongoDB", "Git", "Vitest", "Playwright"];
 
-const socialClass = "group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.03] px-3 py-2 transition duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/60 hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]";
-const SocialLinks = () => <div className="mt-14 flex flex-wrap gap-3 text-sm text-[var(--text-secondary)]"><a className={socialClass} href="https://github.com/dreyyan" target="_blank" rel="noreferrer"><SocialIcon name="github" />GitHub<ExternalArrow /></a><a className={socialClass} href="https://www.linkedin.com/in/dreyyan/" target="_blank" rel="noreferrer"><SocialIcon name="linkedin" />LinkedIn<ExternalArrow /></a><a className={socialClass} href="mailto:adriandominic.tan@wvsu.edu.ph"><SocialIcon name="email" />Email<ExternalArrow /></a></div>;
+const Hero = () => (
+  <section className="relative isolate">
+    <DotField className="absolute inset-0 -z-10 h-full w-full mask-[radial-gradient(ellipse_75%_70%_at_60%_45%,black_30%,transparent_80%)]" />
 
-const Home = () => <><section className="page-shell grid min-h-[calc(100vh-72px)] items-center gap-14 lg:grid-cols-[1.15fr_.85fr]"><div className="order-2 lg:order-1"><p className="eyebrow mb-6">Full-stack developer | Philippines</p><h1 className="max-w-3xl text-5xl font-[750] leading-[.98] tracking-[-.065em] sm:text-7xl">I build thoughtful digital products that solve real problems.</h1><p className="mt-7 max-w-xl text-lg leading-8 text-[var(--text-secondary)]">I'm Adrian Tan - a developer and technopreneur focused on clear, useful web experiences, from the first idea to a polished release.</p><div className="mt-10 flex flex-wrap gap-4"><Link to="/portfolio" className="rounded-full border border-[var(--accent)]/50 bg-[var(--accent)]/15 px-6 py-3 font-semibold text-[var(--accent)] transition hover:-translate-y-0.5 hover:bg-[var(--accent)]/25">Explore selected work</Link><Link to="/resume" className="rounded-full border border-white/20 px-6 py-3 font-semibold transition hover:border-white">View Resume</Link></div><SocialLinks /></div><div className="order-1 mx-auto w-full max-w-sm lg:order-2"><div className="relative isolate aspect-[4/5] p-5"><div className="absolute inset-3 rotate-6 rounded-2xl border border-[var(--accent)]/30 bg-[var(--accent)]/8" /><div className="absolute inset-4 -rotate-3 rounded-2xl border border-white/10 bg-[#11182b]" /><div className="relative h-full overflow-hidden rounded-2xl border border-white/15 bg-[var(--card)] p-2 shadow-2xl shadow-cyan-950/40"><img className="h-full w-full rounded-xl object-cover object-center grayscale-[10%] transition duration-700 hover:scale-[1.03]" src="/profile-picture.png" alt="Adrian Tan" /><div className="absolute right-7 top-7 rounded-full border border-white/15 bg-[#0b1020]/75 px-3 py-1.5 text-xs font-semibold tracking-wide text-[var(--accent)] backdrop-blur">OPEN TO COLLABORATE</div></div><span className="absolute -bottom-1 -left-3 text-6xl font-black tracking-[-.1em] text-[var(--accent)]/80">AT</span></div></div></section><section className="relative mx-auto -mt-4 max-w-7xl px-6 pb-16 sm:px-10"><div className="rounded-2xl border border-white/10 bg-[#11182b]/70 p-6 shadow-xl shadow-black/10 backdrop-blur sm:p-8"><div className="mb-6 flex items-center gap-3"><span className="size-2 rounded-full bg-[var(--accent)]" /><p className="text-sm font-semibold text-[var(--text-secondary)]">What I bring to a project</p></div><div className="grid gap-6 sm:grid-cols-3"><div><p className="text-lg font-semibold">Product thinking</p><p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">Prioritizing the user and the real problem behind each feature.</p></div><div className="border-white/10 sm:border-x sm:px-6"><p className="text-lg font-semibold">Full-stack delivery</p><p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">Building responsive interfaces and the systems that support them.</p></div><div><p className="text-lg font-semibold">Curious collaboration</p><p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">Working openly, learning quickly, and moving ideas forward.</p></div></div></div></section></>;
+    <div className="container-page grid items-center gap-14 pb-16 pt-12 sm:pt-20 lg:grid-cols-[1.35fr_1fr] lg:gap-16 lg:pb-24 lg:pt-24">
+      <div>
+        <Reveal>
+          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-3 py-1 text-xs text-muted backdrop-blur">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-accent" />
+            </span>
+            Open to internships and collaborations
+          </p>
+        </Reveal>
+
+        <h1 className="mt-6 text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
+          <span className="sr-only">I build thoughtful digital products that solve real problems.</span>
+          <span aria-hidden="true">
+            <SplitWords text="I build thoughtful digital products that" start={150} />
+            <RotatingPhrase
+              className="text-accent"
+              delay={150 + 6 * 70}
+              phrases={["solve real problems.", "feel effortless.", "people enjoy using."]}
+            />
+          </span>
+        </h1>
+
+        <Reveal delay={750}>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            I'm Adrian Tan, a Computer Science student at Roosevelt University in Chicago and a full-stack developer. I take ideas from the first sketch to a polished, working release.
+          </p>
+        </Reveal>
+
+        <Reveal delay={900}>
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Magnetic><Button to="/portfolio">See my work</Button></Magnetic>
+            <Magnetic><Button to="/resume" variant="ghost">View resume</Button></Magnetic>
+            <SocialLinks className="ml-1" />
+          </div>
+          <p className="mt-10 hidden font-mono text-xs text-faint lg:block">↳ psst, click anywhere on the dots</p>
+        </Reveal>
+      </div>
+
+      <Reveal delay={200} className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none">
+        <div aria-hidden="true" className="absolute -inset-10 -z-10 rounded-full bg-accent/12 blur-3xl" />
+        <Tilt max={12} className="relative rounded-3xl">
+          <div className="unveil ring-border rounded-3xl p-[1.5px]">
+            <div className="relative overflow-hidden rounded-[calc(1.5rem-1.5px)] bg-surface">
+              <img
+                src="/profile-picture.webp"
+                width={800}
+                height={800}
+                alt="Portrait of Adrian Tan"
+                className="aspect-4/5 w-full object-cover object-[50%_20%]"
+              />
+              <div className="tilt-glare" />
+            </div>
+          </div>
+
+          <FloatChip className="-left-3 top-8 sm:-left-8" delay={0} enter={1300}>
+            <span className="text-[#61DAFB]">⚛</span> React
+          </FloatChip>
+          <FloatChip className="-right-3 top-1/3 sm:-right-8" delay={1500} enter={1450}>
+            <span className="text-[#70B7F0]">TS</span> TypeScript
+          </FloatChip>
+          <FloatChip className="-left-3 bottom-24 sm:-left-10" delay={3000} enter={1600}>
+            <span className="text-[#FFD43B]">py</span> Python
+          </FloatChip>
+          <FloatChip className="-right-2 bottom-6 sm:-right-6" delay={800} enter={1750}>
+            <span className="text-accent">$</span> npm run build <span className="text-accent">✓</span>
+          </FloatChip>
+        </Tilt>
+      </Reveal>
+    </div>
+  </section>
+);
+
+const StackMarquee = () => (
+  <Reveal delay={1100}>
+    <div aria-label="Technologies I work with" className="marquee overflow-hidden border-y border-line py-5 mask-[linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
+      <div className="marquee-track flex w-max">
+        {[...stack, ...stack].map((item, i) => (
+          <span key={i} aria-hidden={i >= stack.length} className="flex items-center font-mono text-sm text-muted">
+            <span className="px-6">{item}</span>
+            <span className="text-accent/60">✦</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </Reveal>
+);
+
+const Home = () => (
+  <>
+    <Hero />
+    <StackMarquee />
+
+    <section className="container-page py-16 lg:py-24">
+      <Reveal>
+        <SectionHeader
+          eyebrow="Selected work"
+          title="Recent projects"
+          action={<Link to="/portfolio" className="text-sm font-medium text-muted transition hover:text-accent">All projects →</Link>}
+        />
+      </Reveal>
+      <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
+        {featuredProjects.map((project, i) => (
+          <Reveal key={project.title} delay={i * 150}>
+            <ProjectCard {...project} />
+          </Reveal>
+        ))}
+      </div>
+    </section>
+
+    <section className="container-page py-16 lg:py-20">
+      <Reveal>
+        <SectionHeader eyebrow="What I bring" title="How I help a project" />
+      </Reveal>
+      <div className="grid gap-4 md:grid-cols-3">
+        {strengths.map(([title, copy], i) => (
+          <Reveal key={title} delay={i * 120}>
+            <Spotlight className="group h-full overflow-hidden rounded-2xl border border-line bg-surface/60 p-7 transition duration-300 hover:-translate-y-1 hover:border-accent/30">
+              <p className="font-mono text-5xl font-medium text-ink/6 transition duration-500 group-hover:text-accent/25">0{i + 1}</p>
+              <h3 className="mt-6 text-lg">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{copy}</p>
+            </Spotlight>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+
+    <Reveal>
+      <ContactBand />
+    </Reveal>
+  </>
+);
+
 export default Home;

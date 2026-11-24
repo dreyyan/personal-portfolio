@@ -1,35 +1,125 @@
-export const otherProjectsData = [
-  // 1️⃣ Web / Frontend
+export interface FeaturedProject {
+  /** Screenshot in /public. Projects without one get a generated cover. */
+  image?: string;
+  title: string;
+  category: string;
+  description: string;
+  stack: string[];
+  previewLink?: string;
+  codeLink: string;
+}
+
+/** The selected technical projects from the resume, in the same order. */
+export const featuredProjects: FeaturedProject[] = [
   {
-    category: "Web / Frontend",
+    image: "card-symptomatik-ai.webp",
+    title: "SymptoMatik-AI",
+    category: "AI diagnostic assistant",
+    description: "Processes user-reported symptoms and ranks potential medical conditions, pairing machine-learning models with structured medical information and an interactive web interface.",
+    stack: ["React", "FastAPI", "Python", "Machine Learning"],
+    previewLink: "https://symptomatik-ai.vercel.app",
+    codeLink: "https://github.com/dreyyan/symptomatik-ai",
+  },
+  {
+    image: "card-pavia-one.webp",
+    title: "PaviaOne",
+    category: "School management system",
+    description: "A full-stack academic platform for Pavia National High School that brings enrollment, grading, attendance and student records into one integrated system.",
+    stack: ["React", "Node.js", "Express.js", "PostgreSQL", "Prisma"],
+    codeLink: "https://github.com/dreyyan/pavia-one",
+  },
+  {
+    image: "card-smart-pos.webp",
+    title: "SmartPOS",
+    category: "POS & business management",
+    description: "A point-of-sale and business management system for sales, inventory, order tracking and transactions, with a dashboard for staff administration.",
+    stack: ["React", "Express.js", "PostgreSQL", "Prisma"],
+    codeLink: "https://github.com/dreyyan/smart-pos",
+  },
+  {
+    image: "card-zen-db.webp",
+    title: "ZenDB",
+    category: "PostgreSQL ORM console",
+    description: "A guided database console built on SQLAlchemy for creating schemas, querying and editing data, importing and exporting CSV/JSON, and running custom SQL.",
+    stack: ["Python", "SQLAlchemy", "Alembic", "PostgreSQL", "Pandas"],
+    codeLink: "https://github.com/dreyyan/zen-db",
+  },
+];
+
+/** Paid, client-facing work (Professional Experience on the resume). */
+export const clientProject: FeaturedProject = {
+  image: "card-happy-pill-bar-and-resto.webp",
+  title: "Happy Pill Bar & Resto",
+  category: "Client website",
+  description: "A responsive promotional website for a bar and restaurant in Iloilo City, covering its menu, events and gallery. Built with the client and maintained since launch.",
+  stack: ["React", "Tailwind CSS"],
+  previewLink: "https://www.happypillbar.com/home",
+  codeLink: "https://github.com/dreyyan/happy-pill",
+};
+
+/** Everything else on GitHub worth showing. Dates are MM/DD/YYYY. */
+export const otherProjectsData = [
+  // Web / Full-stack
+  {
+    category: "Web / Full-stack",
+    title: "Scho",
+    date: "10/24/2026",
+    description: "Personal organization app for tasks, reminders, notes and saved links (in progress)",
+    skills: ["Next.js", "Prisma", "PostgreSQL"]
+  },
+  {
+    category: "Web / Full-stack",
+    title: "Snippify",
+    date: "10/18/2025",
+    description: "Personal code snippet hub for creating, organizing and sharing code",
+    skills: ["TypeScript", "React"]
+  },
+  {
+    category: "Web / Full-stack",
+    title: "Gigsta",
+    date: "11/21/2025",
+    description: "Lightning-fast marketplace for real freelance work",
+    skills: ["PHP", "JavaScript"]
+  },
+  {
+    category: "Web / Full-stack",
     title: "Linawa",
     date: "04/07/2025",
     description: "Online Voting & Democracy Transparency React Website",
-    skills: ["React", "Voting Management System", "Hackathon Project"]
+    skills: ["React", "Hackathon Project"]
   },
   {
-    category: "Web / Frontend",
+    category: "Web / Full-stack",
     title: "Yellow Basket",
     date: "08/31/2025",
     description: "E-commerce Website via React",
     skills: ["React", "E-commerce"]
   },
   {
-    category: "Web / Frontend",
+    category: "Web / Full-stack",
     title: "My Historical Journey",
     date: "08/01/2025",
     description: "Website Showcasing Filipino History via React",
     skills: ["React", "Historical Website"]
   },
   {
-    category: "Web / Frontend",
+    category: "Web / Full-stack",
     title: "SalaRate",
     date: "08/02/2025",
     description: "Employee Salary Calculator Website",
     skills: ["HTML5", "CSS3", "JavaScript"]
   },
 
-  // 2️⃣ Python / Data / AI / Backend
+  // Mobile
+  {
+    category: "Mobile / Flutter",
+    title: "Soro",
+    date: "04/01/2026",
+    description: "Adaptive and gamified flashcard learning app",
+    skills: ["Dart", "Flutter"]
+  },
+
+  // Python / Data / AI
   {
     category: "Python / AI / Backend",
     title: "HealthLink",
@@ -49,7 +139,7 @@ export const otherProjectsData = [
     title: "Tasky",
     date: "08/02/2025",
     description: "NLP-based A.I. Task Assistant",
-    skills: ["Python", "Artificial Intelligence", "Natural Language Processing", "Task Management System"]
+    skills: ["Python", "Natural Language Processing", "Task Management System"]
   },
   {
     category: "Python / AI / Backend",
@@ -57,13 +147,6 @@ export const otherProjectsData = [
     date: "08/10/2025",
     description: "Student Portal Management System via Python TUI",
     skills: ["Python", "Student Management System", "Text-based UI"]
-  },
-  {
-    category: "Python / AI / Backend",
-    title: "ZenDB",
-    date: "09/28/2025",
-    description: "SQLAlchemy ORM Console for PostgreSQL Developers",
-    skills: ["Python", "SQLAlchemy", "PostgreSQL", "Database Management", "TUI Library"]
   },
   {
     category: "Python / AI / Backend",
@@ -115,7 +198,16 @@ export const otherProjectsData = [
     skills: ["Python", "Game Development", "Text-based UI"]
   },
 
-  // 3️⃣ Java / Java-based Projects
+  // Haskell
+  {
+    category: "Haskell / Simulation",
+    title: "Ashfall",
+    date: "10/05/2026",
+    description: "Post-apocalyptic robot colony simulator with resource, energy and storage systems (in progress)",
+    skills: ["Haskell", "Hspec"]
+  },
+
+  // Java
   {
     category: "Java / Backend / TUI",
     title: "AcademIQ",
@@ -145,7 +237,7 @@ export const otherProjectsData = [
     skills: ["Java", "Library", "Maven"]
   },
 
-  // 4️⃣ C++ / Game / Simulation Projects
+  // C++
   {
     category: "C++ / Game / Simulation",
     title: "A.A.V.S.S.S.",
@@ -175,7 +267,7 @@ export const otherProjectsData = [
     skills: ["C++", "Library Management System", "Text-based UI"]
   },
 
-  // 5️⃣ C# / Unity / Game Development
+  // C#
   {
     category: "C# / Unity / Game Development",
     title: "Dawn's Sari-Sari Store",

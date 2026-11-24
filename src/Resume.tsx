@@ -1,26 +1,218 @@
+import type { ReactNode } from "react";
 import ExperienceCard from "./components/ExperienceCard";
-import { SocialIcon } from "./Home";
+import { Icon, type IconName } from "./components/Icons";
+import { Button, Tag } from "./components/ui";
+import { site } from "./data/site";
 
-const courses = ["Web Development", "Human-Computer Interaction", "Software Engineering", "Systems Analysis & Design"];
-const skills = [
-  { category: "Frontend", items: ["React", "React Native", "TypeScript", "JavaScript", "HTML5", "CSS3"] },
-  { category: "Backend & Data", items: ["Node.js", "Express.js", "Flask", "PostgreSQL", "MySQL", "MongoDB", "SQLite", "SQLAlchemy"] },
-  { category: "Tools & Platforms", items: ["Git & GitHub", "Vercel", "Netlify", "Postman", "Figma", "VS Code"] },
+const contacts: [IconName, string, string][] = [
+  ["email", site.email, `mailto:${site.email}`],
+  ["github", "github.com/dreyyan", site.github],
+  ["linkedin", "linkedin.com/in/dreyyan", site.linkedin],
 ];
-const contactClass = "flex items-center gap-3 text-sm text-[var(--text-secondary)] transition hover:translate-x-1 hover:text-[var(--accent)]";
-const skillColors: Record<string, string> = {
-  React: "border-[#61DAFB]/35 bg-[#61DAFB]/10 text-[#61DAFB]", "React Native": "border-[#61DAFB]/35 bg-[#61DAFB]/10 text-[#61DAFB]", TypeScript: "border-[#3178C6]/45 bg-[#3178C6]/15 text-[#70B7F0]", JavaScript: "border-[#F7DF1E]/35 bg-[#F7DF1E]/10 text-[#F7DF1E]", HTML5: "border-[#E34F26]/40 bg-[#E34F26]/10 text-[#FF7957]", CSS3: "border-[#1572B6]/40 bg-[#1572B6]/10 text-[#62B7E9]", "Node.js": "border-[#5FA04E]/40 bg-[#5FA04E]/10 text-[#86CB74]", "Express.js": "border-slate-400/35 bg-slate-400/10 text-slate-300", Flask: "border-zinc-400/35 bg-zinc-400/10 text-zinc-200", PostgreSQL: "border-[#4169E1]/40 bg-[#4169E1]/10 text-[#7FA0FF]", MySQL: "border-[#4479A1]/40 bg-[#4479A1]/10 text-[#78ACD2]", MongoDB: "border-[#47A248]/40 bg-[#47A248]/10 text-[#75D476]", SQLite: "border-[#44A2D1]/40 bg-[#44A2D1]/10 text-[#7BC4E8]", SQLAlchemy: "border-red-400/40 bg-red-400/10 text-red-300", "Git & GitHub": "border-orange-400/40 bg-orange-400/10 text-orange-300", Vercel: "border-white/30 bg-white/10 text-white", Netlify: "border-[#00C7B7]/40 bg-[#00C7B7]/10 text-[#48E0D4]", Postman: "border-[#FF6C37]/40 bg-[#FF6C37]/10 text-[#FF8F66]", Figma: "border-fuchsia-400/40 bg-fuchsia-400/10 text-fuchsia-300", "VS Code": "border-[#007ACC]/40 bg-[#007ACC]/10 text-[#55B9F3]",
-};
 
-const Resume = () => <main className="page-shell">
-  <section className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end"><div><p className="eyebrow">Resume</p><h1 className="mt-4 text-5xl font-[750] tracking-[-.055em] sm:text-6xl">Adrian Tan</h1><p className="mt-4 text-xl font-semibold text-[var(--accent)]">Full-stack developer & technopreneur</p><p className="mt-5 max-w-2xl leading-7 text-[var(--text-secondary)]">Computer Science student building responsive web products and data-informed tools, from initial requirements to working software.</p></div><div className="space-y-3"><a className={contactClass} href="mailto:adriandominic.tan@wvsu.edu.ph"><SocialIcon name="email" />adriandominic.tan@wvsu.edu.ph</a><a className={contactClass} href="https://github.com/dreyyan" target="_blank" rel="noreferrer"><SocialIcon name="github" />github.com/dreyyan</a><a className={contactClass} href="https://linkedin.com/in/dreyyan" target="_blank" rel="noreferrer"><SocialIcon name="linkedin" />linkedin.com/in/dreyyan</a></div></section>
+const interests = ["Machine Learning & Artificial Intelligence", "Software & Systems Engineering", "Cloud & Distributed Systems"];
 
-  <section className="section-block"><div className="section-heading"><div><p className="eyebrow">Experience</p><h2 className="mt-3 section-title">Work and practice.</h2></div><span className="hidden text-sm text-[var(--text-secondary)] sm:block">2022 - Present</span></div><div className="grid gap-6 md:grid-cols-2"><ExperienceCard title="Freelance Web Developer" iconUrl="/freelance-web-developer-icon.svg" category="Self-employed" yearRange="2022 - Present" description={["Develop and maintain responsive websites for small businesses and independent projects.", "Translate client requirements into clear features and refine work from feedback.", "Build accessible interfaces that work reliably across common screen sizes."]} /><ExperienceCard title="Data Scientist" iconUrl="/data-scientist-icon.svg" category="AI / Analytics" yearRange="2023 - Present" description={["Build and evaluate machine-learning models for prediction and classification.", "Clean data, engineer features, and explore structured datasets using Python.", "Create visual reports that make model insights understandable."]} /></div></section>
+const courses = [
+  "Data Structures & Algorithms",
+  "Algorithms & Complexity",
+  "Object-Oriented Programming",
+  "Software Engineering",
+  "Systems Analysis & Design",
+  "Web Design & Development",
+  "Information Management (Database Systems)",
+  "Human-Computer Interaction",
+];
 
-  <section className="section-block grid gap-10 border-y border-white/10 py-12 lg:grid-cols-[.72fr_1.28fr]"><div><p className="eyebrow">Education</p><h2 className="mt-3 text-2xl font-bold">BS Computer Science</h2><p className="mt-3 text-[var(--text-secondary)]">West Visayas State University</p><p className="mt-1 text-sm font-semibold text-[var(--accent)]">Class of 2028</p></div><div><p className="mb-5 text-xs font-semibold uppercase tracking-[.15em] text-[var(--text-secondary)]">Relevant coursework</p><div className="grid gap-3 sm:grid-cols-2">{courses.map((course, index) => <div key={course} className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[.025] p-4"><span className="text-xs font-bold text-[var(--accent)]">0{index + 1}</span><span className="text-sm font-semibold">{course}</span></div>)}</div></div></section>
+const skills = [
+  { category: "Languages", items: ["Python", "JavaScript", "TypeScript", "C++", "SQL", "HTML/CSS"] },
+  { category: "Frameworks & Libraries", items: ["React", "Next.js", "Node.js", "Express.js", "FastAPI", "SQLAlchemy", "Prisma", "Pandas"] },
+  { category: "Tools & Platforms", items: ["AWS", "PostgreSQL", "MongoDB", "Git", "GitHub", "Vitest", "Playwright"] },
+];
 
-  <section className="section-block"><p className="eyebrow">Capabilities</p><h2 className="mt-3 section-title">Skills, organized.</h2><div className="mt-8 grid gap-6 lg:grid-cols-3">{skills.map((group, index) => <article key={group.category} className="rounded-2xl border border-white/10 bg-[var(--card)] p-6"><div className="flex items-center justify-between"><h3 className="text-lg font-bold">{group.category}</h3><span className="text-xs font-bold text-[var(--accent)]">0{index + 1}</span></div><div className="mt-6 flex flex-wrap gap-2">{group.items.map(skill => <span key={skill} className={`rounded-lg border px-3 py-2 text-sm font-medium ${skillColors[skill] ?? "border-white/10 bg-white/[.04] text-[var(--text-secondary)]"}`}>{skill}</span>)}</div></article>)}</div></section>
+const projects = [
+  {
+    title: "SymptoMatik-AI",
+    category: "AI Diagnostic Assistant",
+    repo: "symptomatik-ai",
+    tags: ["React", "FastAPI", "Python", "Machine Learning", "Tailwind CSS"],
+    points: [
+      "Developed an AI-assisted application that processes user-reported symptoms and ranks potential medical conditions.",
+      "Integrated machine learning models with structured medical information and a web-based interface for presenting predictions.",
+    ],
+  },
+  {
+    title: "ZenDB",
+    category: "PostgreSQL ORM Console",
+    repo: "zen-db",
+    tags: ["Python", "SQLAlchemy", "Alembic", "PostgreSQL", "Pandas"],
+    points: [
+      "Developed an interactive database management console using SQLAlchemy for schema creation, querying, and data manipulation.",
+      "Implemented guided database operations, data import/export, and support for custom SQL execution.",
+    ],
+  },
+  {
+    title: "PaviaOne",
+    category: "School Management System",
+    repo: "pavia-one",
+    tags: ["React", "Node.js", "Express.js", "PostgreSQL", "Prisma", "Tailwind CSS"],
+    points: [
+      "Developed a full-stack academic management platform integrating enrollment, grading, attendance, and student records.",
+      "Designed integrated application workflows for managing and retrieving academic and administrative information.",
+      "Centralized academic and administrative processes through an integrated platform.",
+    ],
+  },
+  {
+    title: "SmartPOS",
+    category: "POS & Business Management System",
+    repo: "smart-pos",
+    tags: ["React", "Express.js", "PostgreSQL", "Prisma"],
+    points: [
+      "Built a full-stack point-of-sale and business management system for sales processing, inventory management, order tracking, and transaction recording.",
+      "Implemented an integrated dashboard for staff administration and day-to-day business operations.",
+    ],
+  },
+];
 
-  <section className="section-block flex flex-col items-start justify-between gap-6 rounded-2xl border border-[var(--accent)]/20 bg-[var(--accent)]/[.06] p-7 sm:flex-row sm:items-center"><div><h2 className="text-xl font-bold">Want the printable version?</h2><p className="mt-2 text-sm text-[var(--text-secondary)]">Download the complete resume as a PDF.</p></div><a href="/resume_web_development.pdf" download className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-bold text-[#0b1020] transition hover:-translate-y-0.5">Download Resume</a></section>
-</main>;
+const Block = ({ title, children }: { title: string; children: ReactNode }) => (
+  <section className="grid gap-4 border-t border-line py-12 lg:grid-cols-[14rem_1fr] lg:gap-12">
+    <h2 className="eyebrow pt-1">{title}</h2>
+    <div>{children}</div>
+  </section>
+);
+
+const School = ({ name, place, degree, when, note }: { name: string; place: string; degree: string; when: string; note?: ReactNode }) => (
+  <div>
+    <div className="flex flex-wrap items-baseline justify-between gap-2">
+      <h3 className="text-lg">{name}</h3>
+      <p className="font-mono text-xs text-faint">{when}</p>
+    </div>
+    <p className="mt-0.5 text-sm text-accent">{degree}</p>
+    <p className="mt-1 text-sm text-muted">{place}</p>
+    {note && <p className="mt-2 text-sm text-ink">{note}</p>}
+  </div>
+);
+
+const Resume = () => (
+  <div className="container-page pb-24 pt-14 sm:pt-20 lg:pt-24">
+    <header className="flex flex-col justify-between gap-10 pb-14 lg:flex-row lg:items-end">
+      <div>
+        <p className="eyebrow">Resume</p>
+        <h1 className="mt-4 text-4xl sm:text-5xl">{site.fullName}</h1>
+        <p className="mt-2 text-lg text-accent">{site.role}</p>
+        <p className="mt-5 max-w-xl leading-relaxed text-muted">
+          Computer Science student at Roosevelt University in Chicago, building full-stack and machine-learning applications from initial requirements to working software.
+        </p>
+      </div>
+      <div className="flex flex-col gap-6 lg:items-end">
+        <ul className="space-y-2.5 lg:text-right">
+          {contacts.map(([icon, label, href]) => (
+            <li key={label}>
+              <a
+                href={href}
+                {...(href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+                className="inline-flex items-center gap-2.5 text-sm text-muted transition hover:text-accent lg:flex-row-reverse"
+              >
+                <Icon name={icon} />
+                {label}
+              </a>
+            </li>
+          ))}
+          <li className="text-sm text-faint">{site.location}</li>
+        </ul>
+        <Button to={site.resumePdf} download>
+          <Icon name="download" /> Download PDF
+        </Button>
+      </div>
+    </header>
+
+    <Block title="Research interests">
+      <ul className="flex flex-wrap gap-2">
+        {interests.map(item => (
+          <li key={item} className="rounded-full border border-accent/30 bg-accent/5 px-3 py-1 text-sm text-accent">{item}</li>
+        ))}
+      </ul>
+    </Block>
+
+    <Block title="Education">
+      <div className="space-y-8">
+        <School name="Roosevelt University" place="Chicago, IL" degree="Bachelor of Science in Computer Science" when="Expected May 2028" />
+        <School
+          name="West Visayas State University"
+          place="Iloilo, Philippines"
+          degree="Bachelor of Science in Computer Science (Undergraduate Studies)"
+          when="2024 – 2026"
+          note={<>Reported U.S. GPA equivalent: <strong className="font-semibold text-accent">3.91 / 4.00</strong></>}
+        />
+      </div>
+      <p className="mt-8 text-sm text-muted">Relevant coursework</p>
+      <ul className="mt-3 flex flex-wrap gap-2">
+        {courses.map(course => (
+          <li key={course} className="rounded-full border border-line px-3 py-1 text-sm text-ink">{course}</li>
+        ))}
+      </ul>
+    </Block>
+
+    <Block title="Experience">
+      <div className="-mt-8 [&>article:first-child]:border-t-0">
+        <ExperienceCard
+          title="Web Developer (Project-Based)"
+          category="Happy Pill Bar & Resto"
+          meta="Oct 2025 – Present"
+          tags={["React", "Tailwind CSS"]}
+          description={[
+            "Developed and deployed a responsive promotional website for Happy Pill Bar & Resto using React and Tailwind CSS.",
+            "Collaborated with the client to implement requested features and improvements.",
+            "Currently maintaining the website through updates, enhancements, and bug fixes.",
+          ]}
+        />
+      </div>
+    </Block>
+
+    <Block title="Selected projects">
+      <div className="-mt-8 [&>article:first-child]:border-t-0">
+        {projects.map(project => (
+          <ExperienceCard
+            key={project.title}
+            title={project.title}
+            category={project.category}
+            tags={project.tags}
+            description={project.points}
+            meta={
+              <a href={`${site.github}/${project.repo}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 transition hover:text-accent">
+                <Icon name="github" className="size-3.5" /> {project.repo}
+              </a>
+            }
+          />
+        ))}
+      </div>
+    </Block>
+
+    <Block title="Technical skills">
+      <div className="grid gap-8 sm:grid-cols-3">
+        {skills.map(group => (
+          <div key={group.category}>
+            <h3 className="text-base">{group.category}</h3>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {group.items.map(skill => <Tag key={skill}>{skill}</Tag>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </Block>
+
+    <Block title="Honors">
+      <ul className="space-y-4">
+        <li className="flex flex-wrap items-baseline justify-between gap-2">
+          <span><strong className="font-semibold">Gold Medal</strong> <span className="text-muted">for Academic Excellence, West Visayas State University</span></span>
+          <span className="font-mono text-xs text-faint">2024, 2025, 2026</span>
+        </li>
+        <li className="flex flex-wrap items-baseline justify-between gap-2">
+          <span>Graduated <strong className="font-semibold">“With High Honors”</strong><span className="text-muted">, Senior High School</span></span>
+          <span className="font-mono text-xs text-faint">2023</span>
+        </li>
+      </ul>
+    </Block>
+  </div>
+);
+
 export default Resume;
